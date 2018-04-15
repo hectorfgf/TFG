@@ -1,5 +1,9 @@
 import {Component} from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
+import {ControlAccesoProvider} from "../../providers/control-acceso/control-acceso";
+import {ControlSesionProvider} from "../../providers/control-sesion/control-sesion";
+import {SmsValidarPage} from "../sms-validar/sms-validar";
+import {RegistroPage} from "../registro/registro";
 
 
 @IonicPage()
@@ -13,13 +17,31 @@ export class LoginPage {
   private disableLogin: boolean;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private accesoControl: ControlAccesoProvider,
+              private controlSesion: ControlSesionProvider, private toastr: ToastController) {
     this.telefono = "";
   }
 
   doLogin() {
     this.disableLogin = true;
+    this.accesoControl.login(this.telefono).subscribe((response:any)=>{
+      if(response.data.content.found){
+        this.controlSesion.setUserInformation(this.telefono, response.data.content);
+        this.navCtrl.push('SmsValidarPage');
+      }else{
+        this.toastr.create(
+          {
+            message: 'No se encuentra el telefono introducido',
+            duration: 3000,
+            position: 'bottom',
+            showCloseButton: true
+          }
+        ).present();
+        this.disableLogin = false;
+      }
+    });
   }
+
   goRegister(){
     this.navCtrl.push('RegistroPage');
   }

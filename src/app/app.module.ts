@@ -12,6 +12,10 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import {LoginPageModule} from "../pages/login/login.module";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
+import { ControlAccesoProvider } from '../providers/control-acceso/control-acceso';
+import { ControlSesionProvider } from '../providers/control-sesion/control-sesion';
+import {RegistroPageModule} from "../pages/registro/registro.module";
+import {SmsValidarPageModule} from "../pages/sms-validar/sms-validar.module";
 
 
 
@@ -27,7 +31,9 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
     BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpClientModule,
-    LoginPageModule
+    LoginPageModule,
+    RegistroPageModule,
+    SmsValidarPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -40,7 +46,9 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    ControlAccesoProvider,
+    ControlSesionProvider
   ]
 })
 export class AppModule {}

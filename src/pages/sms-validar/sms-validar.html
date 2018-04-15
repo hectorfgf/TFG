@@ -1,0 +1,28 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Validar sms</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <h1 ion-text text-center color="primary" style="font-weight:100">Confirmacion de mensaje de texto(SMS)</h1>
+
+  <ion-item>
+    <ion-input [(ngModel)]="codigo" type="text" placeholder="Código"></ion-input>
+  </ion-item>
+
+  <div padding>
+    <button ion-button block (click)="checkCodigo()" [disabled]="disableCheck">
+      <span *ngIf="!disableCheck">Confirmar código</span>
+      <ion-spinner *ngIf="disableCheck"></ion-spinner>
+    </button>
+    <p text-center>
+      <button ion-button block (click)="cancelar()" >
+        <span >Cancelar</span>
+      </button>
+    </p>
+  </div>
+</ion-content>
