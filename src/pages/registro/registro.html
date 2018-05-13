@@ -1,12 +1,27 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>registro</ion-title>
+    <ion-title>Registro de padre</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+  <h1 ion-text text-center color="primary" style="font-weight:100">Registro:</h1>
 
+  <ion-item>
+    <ion-input [(ngModel)]="nombre" type="text" placeholder="Nombre"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-input [(ngModel)]="telefono" type="text" placeholder="Telefono"></ion-input>
+  </ion-item>
+
+  <div padding>
+    <button ion-button block (click)="doRegister()" [disabled]="disableRegister">
+      <span *ngIf="!disableRegister">Registrate</span>
+      <ion-spinner *ngIf="disableRegister"></ion-spinner>
+    </button>
+  </div>
 </ion-content>

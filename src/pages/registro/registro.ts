@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
+import {ControlAccesoProvider} from "../../providers/control-acceso/control-acceso";
+import {ControlSesionProvider} from "../../providers/control-sesion/control-sesion";
+import {CentroSeleccionPage} from "../centro-seleccion/centro-seleccion";
 
 /**
  * Generated class for the RegistroPage page.
@@ -15,11 +18,36 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class RegistroPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  public telefono: string;
+  public nombre: string;
+  private disableRegister: boolean;
+
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private toastr: ToastController,
+              private accesoControl: ControlAccesoProvider,private controlSesion: ControlSesionProvider) {
+    this.telefono = "";
+    this.nombre = "";
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad RegistroPage');
+  doRegister() {
+    this.disableRegister = true;
+    this.accesoControl.register(this.telefono, this.nombre).subscribe((response:any)=>{
+      console.log(response);
+      if(response.success){
+        this.controlSesion.setUserId(response.content.id);
+        this.navCtrl.push('CentroSeleccionPage');
+      }else{
+        this.toastr.create(
+          {
+            message: 'Ha ocurrido un error, no se pudo registrar',
+            duration: 3000,
+            position: 'bottom',
+            showCloseButton: true
+          }
+        ).present();
+        this.disableRegister = false;
+      }
+    });
   }
 
 }

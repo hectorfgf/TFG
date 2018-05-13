@@ -25,8 +25,9 @@ export class LoginPage {
   doLogin() {
     this.disableLogin = true;
     this.accesoControl.login(this.telefono).subscribe((response:any)=>{
-      if(response.data.content.found){
-        this.controlSesion.setUserInformation(this.telefono, response.data.content);
+      console.log(response);
+      if(response.content.found){
+        this.controlSesion.setUserInformation(this.telefono, response.content);
         this.navCtrl.push('SmsValidarPage');
       }else{
         this.toastr.create(

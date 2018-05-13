@@ -16,6 +16,8 @@ import { ControlAccesoProvider } from '../providers/control-acceso/control-acces
 import { ControlSesionProvider } from '../providers/control-sesion/control-sesion';
 import {RegistroPageModule} from "../pages/registro/registro.module";
 import {SmsValidarPageModule} from "../pages/sms-validar/sms-validar.module";
+import {CentroSeleccionPage} from "../pages/centro-seleccion/centro-seleccion";
+import {CentroSeleccionPageModule} from "../pages/centro-seleccion/centro-seleccion.module";
 
 
 
@@ -33,7 +35,8 @@ import {SmsValidarPageModule} from "../pages/sms-validar/sms-validar.module";
     HttpClientModule,
     LoginPageModule,
     RegistroPageModule,
-    SmsValidarPageModule
+    SmsValidarPageModule,
+    CentroSeleccionPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

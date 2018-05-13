@@ -18,4 +18,8 @@ export class ControlAccesoProvider {
   login(telefono){
     return this.http.get(apiURL+'parents?telephone='+telefono);
   }
+
+  register(telefono, nombre){
+    return this.http.post(apiURL+'parents', {'name' : nombre, 'telephone' : telefono});
+  }
 }

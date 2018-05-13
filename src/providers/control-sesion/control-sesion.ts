@@ -22,6 +22,10 @@ export class ControlSesionProvider {
     localStorage.setItem('isRegistered', user.found);
   }
 
+  setUserId(id){
+    localStorage.setItem('id', id);
+  }
+
   getUserInformation(){
     return {
       telefono: localStorage.getItem('telefono'),
