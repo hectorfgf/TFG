@@ -18,6 +18,7 @@ import {RegistroPageModule} from "../pages/registro/registro.module";
 import {SmsValidarPageModule} from "../pages/sms-validar/sms-validar.module";
 import {CentroSeleccionPage} from "../pages/centro-seleccion/centro-seleccion";
 import {CentroSeleccionPageModule} from "../pages/centro-seleccion/centro-seleccion.module";
+import {ControlCentrosProvider} from "../providers/control-centros/control-centros";
 
 
 
@@ -51,7 +52,8 @@ import {CentroSeleccionPageModule} from "../pages/centro-seleccion/centro-selecc
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ControlAccesoProvider,
-    ControlSesionProvider
+    ControlSesionProvider,
+    ControlCentrosProvider
   ]
 })
 export class AppModule {}

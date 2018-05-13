@@ -25,6 +25,9 @@ export class ControlSesionProvider {
   setUserId(id){
     localStorage.setItem('id', id);
   }
+  getUserId(){
+    return localStorage.getItem('id');
+  }
 
   getUserInformation(){
     return {
