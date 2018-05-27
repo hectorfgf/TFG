@@ -1,0 +1,26 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>DetalleCircular</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <h2>{{circular.subject}}</h2>
+  <div *ngIf="content">
+    <ion-list>
+      <ion-item>{{content.subject}}</ion-item>
+      <ion-item>{{content.sendingDate}}</ion-item>
+      <ion-item class="item-icon-left" *ngIf="content.attachmentId != null">
+        <i class="icon ion-android-attach" *ngIf="content.attachmentId!=null" href="#"></i><a (click)="openInExternalBrowser(content.attachmentId)">{{content.attachmentName}}</a>
+        <span></span>
+      </ion-item>
+    </ion-list>
+    <div style="text-align:justify;" class="padding">
+      <p  class="padding" style="color:#000000; font-size:16px;">{{content.message}}</p>
+    </div>
+  </div>
+
+</ion-content>

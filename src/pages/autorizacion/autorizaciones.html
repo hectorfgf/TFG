@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+      Autorizaciones
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only color="royal" (click)="settings()">
+        <ion-icon name="settings" ></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-refresher (ionRefresh)="refrescarAutorizaciones($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-searchbar [(ngModel)]="searchTerm" ></ion-searchbar>
+  <autorizacion *ngFor="let autorizacion of autorizaciones | search: searchTerm" [autorizacion]="autorizacion" (click)="mostrarDetalle(autorizacion)"></autorizacion>
+</ion-content>
