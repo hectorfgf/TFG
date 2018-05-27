@@ -43,4 +43,8 @@ export class ControlSesionProvider {
     return localStorage.getItem('smsCode');
   }
 
+  logOut(){
+    localStorage.clear();
+  }
+
 }

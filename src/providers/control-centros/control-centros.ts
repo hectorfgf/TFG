@@ -23,4 +23,7 @@ export class ControlCentrosProvider {
    return this.http.post(apiURL+"parents/" + padre + '/centres/' + centro, {});
  }
 
+ deleteCentros(padre){
+    return this.http.delete(apiURL+"parents/" + padre + "/centres");
+ }
 }

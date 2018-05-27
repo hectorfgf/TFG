@@ -14,15 +14,16 @@
 
 
 <ion-content padding>
-  <h1 ion-text text-center color="primary" style="font-weight:100">Selecciona los centros de tus hijos:</h1>
-
+  <h1 ion-text text-center color="primary" style="font-weight:100" *ngIf="primeraVez">Selecciona los centros de tus hijos:</h1>
+  <h1 ion-text text-center color="primary" style="font-weight:100" *ngIf="!primeraVez">Listado de centros:</h1>
   <ion-item *ngFor="let centro of centros">
     <ion-label>{{centro.name}}</ion-label>
     <ion-checkbox color="primary" [(ngModel)]="centrosSelccionados[centro.id]"></ion-checkbox>
   </ion-item>
 
   <button ion-button block (click)="addCentros()" [disabled]="disableAdd">
-    <span *ngIf="!disableAdd">Añadir centros</span>
+    <span *ngIf="!disableAdd && primeraVez">Añadir centros</span>
+    <span *ngIf="!disableAdd && !primeraVez">Actualizar centros</span>
     <ion-spinner *ngIf="disableAdd"></ion-spinner>
   </button>
 

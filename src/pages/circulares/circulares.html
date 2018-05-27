@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Circulares</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only color="royal" (click)="settings()">
+        <ion-icon name="settings" ></ion-icon>
+      </button>
+    </ion-buttons>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-refresher (ionRefresh)="refrescarCircualares($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-searchbar [(ngModel)]="searchTerm" ></ion-searchbar>
+  <circular *ngFor="let circular of circulares | search: searchTerm" [circular]="circular" (click)="mostrarDetalle(circular)"></circular>
+
+</ion-content>
