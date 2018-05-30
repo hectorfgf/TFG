@@ -1,0 +1,40 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>DetalleEncuesta</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <h1>{{encuesta.subject}}</h1>
+  <div *ngIf="content">
+  <h4 style="color:#000000;font-weight:300;text-align:justify;">{{content.subject}}</h4>
+  <h5 style="color:#000000;font-weight:300;">{{content.sendingDate}}</h5>
+  <div style="text-align:justify;">
+    <p style="color:#000000;">{{content.message}}</p>
+  </div>
+    <ion-list>
+    <ion-item *ngIf="content.attachment">
+      <i *ngIf="content.attachmentId!=null"></i>
+      <a>{{content.attachmentName}}</a>
+    </ion-item>
+    <ion-item *ngIf="activa == true || content.replied == true">
+      {{content.multiple ? "Escoja una o varias respuestas:" : "Escoja una respuesta:"}}
+    </ion-item>
+    <ion-item *ngIf="content.replied == true">La encuesta ya ha sido respondida.</ion-item>
+    <div *ngIf="content.replied == false && activa == true">
+      <ion-item *ngFor="let option of content.options">
+        <ion-label>{{option.name}}</ion-label>
+        <ion-checkbox color="primary" [(ngModel)]="opcionesSeleccionadas[option.id]"></ion-checkbox>
+      </ion-item>
+    </div>
+    <ion-item>Fecha límite:<p style="color : red" *ngIf="activa === false">EXCEDIDA</p></ion-item>
+    <ion-item>{{content.limitDate }}</ion-item>
+    </ion-list>
+    <button ion-button block
+          *ngIf="content.replied == false && activa == true">Enviar respuesta
+    </button>
+  </div>
+</ion-content>

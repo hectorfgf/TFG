@@ -26,6 +26,8 @@ import {EncuestasProvider} from "../providers/encuestas/encuestas";
 import {AutorizacionProvider} from "../providers/autorizaciones/autorizaciones";
 import {ListadoHijosPageModule} from "../pages/listado-hijos/listado-hijos.module";
 import {ControlHijosProvider} from "../providers/control-hijos/control-hijos";
+import {DetalleAutorizacionPageModule} from "../pages/detalle-autorizacion/detalle-autorizacion.module";
+import {DetalleEncuestaPageModule} from "../pages/detalle-encuesta/detalle-encuesta.module";
 
 
 
@@ -46,6 +48,8 @@ import {ControlHijosProvider} from "../providers/control-hijos/control-hijos";
     SmsValidarPageModule,
     CentroSeleccionPageModule,
     DetalleCircularPageModule,
+    DetalleAutorizacionPageModule,
+    DetalleEncuestaPageModule,
     ListadoHijosPageModule,
     ComponentsModule,
     PipesModule

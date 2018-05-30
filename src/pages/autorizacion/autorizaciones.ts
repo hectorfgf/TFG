@@ -5,6 +5,7 @@ import {HttpErrorResponse} from "@angular/common/http";
 import {AutorizacionProvider} from "../../providers/autorizaciones/autorizaciones";
 import {ControlSesionProvider} from "../../providers/control-sesion/control-sesion";
 import {CentroSeleccionPage} from "../centro-seleccion/centro-seleccion";
+import {DetalleAutorizacionPage} from "../detalle-autorizacion/detalle-autorizacion";
 
 @Component({
   selector: 'autorizaciones',
@@ -53,8 +54,8 @@ export class AutorizacionesPage {
     this.refrescarAutorizaciones(0);
   }
 
-  mostrarDetalle(circular){
-    // this.navCtrl.push(DetalleAutorizacionPage, { circular })
+  mostrarDetalle(autorizacion){
+    this.navCtrl.push(DetalleAutorizacionPage, { autorizacion })
   }
   settings() {
     let buttons = [];

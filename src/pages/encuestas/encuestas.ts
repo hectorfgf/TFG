@@ -5,6 +5,7 @@ import {LoginPage} from "../login/login";
 import {HttpErrorResponse} from "@angular/common/http";
 import {ControlSesionProvider} from "../../providers/control-sesion/control-sesion";
 import {CentroSeleccionPage} from "../centro-seleccion/centro-seleccion";
+import {DetalleEncuestaPage} from "../detalle-encuesta/detalle-encuesta";
 
 @Component({
   selector: 'encuestas',
@@ -50,7 +51,7 @@ export class EncuestasPage {
     this.refrescarEncuestas(0);
   }
   mostrarDetalle(encuesta){
-    //this.navCtrl.push(DetalleEncuestaPage, { encuesta });
+    this.navCtrl.push(DetalleEncuestaPage, { encuesta });
   }
   settings() {
     let buttons = [];
