@@ -1,0 +1,24 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Perfil</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <h2>Datos personales</h2>
+    <ion-item>
+      <strong>Nombre: </strong>
+      {{name}}
+      <ion-icon ios="ios-create" md="ios-create" (click)="cambiarNombre()"></ion-icon>
+    </ion-item>
+    <ion-item>
+      <strong>Teléfono: </strong>
+      {{telephone}}
+    </ion-item>
+  </ion-list>
+  <button ion-button (click)="cambiarCodigo()">Cambiar código de seguridad</button>
+</ion-content>

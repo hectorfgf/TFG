@@ -48,6 +48,28 @@ export class DetalleEncuestaPage {
     });
   }
 
+  enviarRespuesta(){
+    for(let option of Object.keys(this.opcionesSeleccionadas)){
+      console.log(option,this.opcionesSeleccionadas[option]);
+      if(this.opcionesSeleccionadas[option]){
+        console.log('aqui');
+        this.encuestaProvider.responderEncuesta( this.controlSesion.getUserId(),option).subscribe(()=>{});
+      }
+    }
+    this.content.replied= true;
+  }
 
+  revisar(id){
+    if(!this.content.multiple){
+      for(let option of Object.keys(this.opcionesSeleccionadas)){
+        console.log(this.opcionesSeleccionadas, option, id);
+        if(parseInt(option) !== id){
+          this.opcionesSeleccionadas[option] = false;
+        }else{
+          this.opcionesSeleccionadas[option] = true;
+        }
+      }
+    }
+  }
 
 }

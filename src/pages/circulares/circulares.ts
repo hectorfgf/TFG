@@ -7,6 +7,7 @@ import {DetalleCircularPage} from "../detalle-circular/detalle-circular";
 import {ControlSesionProvider} from "../../providers/control-sesion/control-sesion";
 import {CentroSeleccionPage} from "../centro-seleccion/centro-seleccion";
 import {ListadoHijosPage} from "../listado-hijos/listado-hijos";
+import {PerfilPage} from "../perfil/perfil";
 
 @Component({
   selector: 'circulares',
@@ -65,7 +66,7 @@ export class CircularesPage {
     buttons.push({
         text: 'Mi perfil',
         handler: () => {
-          // todo pagina mi perfil
+          this.navCtrl.push(PerfilPage);
         }
     });
     buttons.push({
@@ -77,7 +78,6 @@ export class CircularesPage {
     buttons.push({
       text: 'Mis hijos',
       handler: () => {
-        // todo pagina mis hijos
         this.navCtrl.push(ListadoHijosPage);
       }
     });

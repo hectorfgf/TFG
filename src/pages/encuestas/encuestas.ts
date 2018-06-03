@@ -6,6 +6,8 @@ import {HttpErrorResponse} from "@angular/common/http";
 import {ControlSesionProvider} from "../../providers/control-sesion/control-sesion";
 import {CentroSeleccionPage} from "../centro-seleccion/centro-seleccion";
 import {DetalleEncuestaPage} from "../detalle-encuesta/detalle-encuesta";
+import {PerfilPage} from "../perfil/perfil";
+import {ListadoHijosPage} from "../listado-hijos/listado-hijos";
 
 @Component({
   selector: 'encuestas',
@@ -58,7 +60,7 @@ export class EncuestasPage {
     buttons.push({
       text: 'Mi perfil',
       handler: () => {
-        // todo pagina mi perfil
+        this.navCtrl.push(PerfilPage);
       }
     });
     buttons.push({
@@ -70,7 +72,7 @@ export class EncuestasPage {
     buttons.push({
       text: 'Mis hijos',
       handler: () => {
-        // todo pagina mis hijos
+        this.navCtrl.push(ListadoHijosPage);
       }
     });
     buttons.push({

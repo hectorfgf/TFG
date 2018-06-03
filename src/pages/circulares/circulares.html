@@ -16,5 +16,4 @@
   </ion-refresher>
   <ion-searchbar [(ngModel)]="searchTerm" ></ion-searchbar>
   <circular *ngFor="let circular of circulares | search: searchTerm" [circular]="circular" (click)="mostrarDetalle(circular)"></circular>
-
 </ion-content>

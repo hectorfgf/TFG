@@ -6,6 +6,8 @@ import {AutorizacionProvider} from "../../providers/autorizaciones/autorizacione
 import {ControlSesionProvider} from "../../providers/control-sesion/control-sesion";
 import {CentroSeleccionPage} from "../centro-seleccion/centro-seleccion";
 import {DetalleAutorizacionPage} from "../detalle-autorizacion/detalle-autorizacion";
+import {PerfilPage} from "../perfil/perfil";
+import {ListadoHijosPage} from "../listado-hijos/listado-hijos";
 
 @Component({
   selector: 'autorizaciones',
@@ -62,7 +64,7 @@ export class AutorizacionesPage {
     buttons.push({
       text: 'Mi perfil',
       handler: () => {
-        // todo pagina mi perfil
+        this.navCtrl.push(PerfilPage);
       }
     });
     buttons.push({
@@ -74,7 +76,7 @@ export class AutorizacionesPage {
     buttons.push({
       text: 'Mis hijos',
       handler: () => {
-        // todo pagina mis hijos
+        this.navCtrl.push(ListadoHijosPage);
       }
     });
     buttons.push({

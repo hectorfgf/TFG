@@ -28,6 +28,7 @@ import {ListadoHijosPageModule} from "../pages/listado-hijos/listado-hijos.modul
 import {ControlHijosProvider} from "../providers/control-hijos/control-hijos";
 import {DetalleAutorizacionPageModule} from "../pages/detalle-autorizacion/detalle-autorizacion.module";
 import {DetalleEncuestaPageModule} from "../pages/detalle-encuesta/detalle-encuesta.module";
+import {PerfilPageModule} from "../pages/perfil/perfil.module";
 
 
 
@@ -51,6 +52,7 @@ import {DetalleEncuestaPageModule} from "../pages/detalle-encuesta/detalle-encue
     DetalleAutorizacionPageModule,
     DetalleEncuestaPageModule,
     ListadoHijosPageModule,
+    PerfilPageModule,
     ComponentsModule,
     PipesModule
   ],
