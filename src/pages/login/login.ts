@@ -4,6 +4,7 @@ import {ControlAccesoProvider} from "../../providers/control-acceso/control-acce
 import {ControlSesionProvider} from "../../providers/control-sesion/control-sesion";
 import {SmsValidarPage} from "../sms-validar/sms-validar";
 import {RegistroPage} from "../registro/registro";
+import {TabsPage} from "../tabs/tabs";
 
 
 @IonicPage()
@@ -20,13 +21,15 @@ export class LoginPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, private accesoControl: ControlAccesoProvider,
               private controlSesion: ControlSesionProvider, private toastr: ToastController) {
     this.telefono = "";
+    if(this.controlSesion.getToken()){
+      this.navCtrl.setRoot(TabsPage);
+    }
   }
 
   doLogin() {
     this.disableLogin = true;
     this.accesoControl.login(this.telefono).subscribe((response:any)=>{
-      console.log(response);
-      if(response.content.found){
+      if(response.success && response.content.found){
         this.controlSesion.setUserInformation(this.telefono, response.content);
         this.navCtrl.push('SmsValidarPage');
       }else{
@@ -40,6 +43,16 @@ export class LoginPage {
         ).present();
         this.disableLogin = false;
       }
+    }, error =>{
+      this.toastr.create(
+        {
+          message: 'Ha ocurrido un error, intentelo mas tarde.',
+          duration: 3000,
+          position: 'bottom',
+          showCloseButton: true
+        }
+      ).present();
+      this.disableLogin = false;
     });
   }
 
