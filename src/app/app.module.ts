@@ -29,7 +29,19 @@ import {ControlHijosProvider} from "../providers/control-hijos/control-hijos";
 import {DetalleAutorizacionPageModule} from "../pages/detalle-autorizacion/detalle-autorizacion.module";
 import {DetalleEncuestaPageModule} from "../pages/detalle-encuesta/detalle-encuesta.module";
 import {PerfilPageModule} from "../pages/perfil/perfil.module";
+import {AuthConfig, AuthHttp} from "angular2-jwt";
+import {Http, HttpModule} from '@angular/http';
+import {HttpUsingFormDataService} from "../providers/httpService";
 
+
+export function getAuthHttp(http) {
+  return new AuthHttp(new AuthConfig({
+    headerPrefix: 'Bearer ',
+    noJwtError: true,
+    globalHeaders: [{'Content-Type': 'application/json'}],
+    tokenGetter: (() => localStorage.getItem('token')),
+  }), http);
+}
 
 
 @NgModule({
@@ -54,7 +66,8 @@ import {PerfilPageModule} from "../pages/perfil/perfil.module";
     ListadoHijosPageModule,
     PerfilPageModule,
     ComponentsModule,
-    PipesModule
+    PipesModule,
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -68,13 +81,19 @@ import {PerfilPageModule} from "../pages/perfil/perfil.module";
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    {
+      provide: AuthHttp,
+      useFactory: getAuthHttp,
+      deps: [Http]
+    },
     ControlAccesoProvider,
     ControlSesionProvider,
     ControlCentrosProvider,
     CircularProvider,
     EncuestasProvider,
     AutorizacionProvider,
-    ControlHijosProvider
+    ControlHijosProvider,
+    HttpUsingFormDataService
   ]
 })
 export class AppModule {}
