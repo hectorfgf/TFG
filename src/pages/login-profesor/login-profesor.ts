@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
 import {ControlSesionProvider} from "../../providers/control-sesion/control-sesion";
 import {ControlAccesoProvider} from "../../providers/control-acceso/control-acceso";
+import {JwtHelper} from "angular2-jwt";
 
 /**
  * Generated class for the LoginProfesorPage page.
@@ -33,6 +34,8 @@ export class LoginProfesorPage {
     this.accesoControl.loginProfesor(this.username, this.password).subscribe((response:any)=>{
       if(response.success){
         this.controlSesion.setToken(response.content);
+        const decodeToken = new JwtHelper().decodeToken(response.content);
+        this.controlSesion.setUserId(decodeToken.id);
         this.navCtrl.setRoot('HomeProfesorPage');
       }else{
         this.toastr.create(

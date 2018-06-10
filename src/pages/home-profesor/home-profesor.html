@@ -1,18 +1,27 @@
-<!--
-  Generated template for the HomeProfesorPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>homeProfesor</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>
+      Hermerest
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only color="royal" (click)="settings()">
+        <ion-icon name="settings" ></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+
+  <button class="buttonHeigth" ion-button block color="primary" (click)="irVerHorarios()">Ver Horarios Tutorias</button>
+  <br><br>
+  <button class="buttonHeigth" ion-button block color="primary" (click)="irVerCitasPendientes">Ver citas pendientes</button>
+  <br><br>
+  <button class="buttonHeigth" ion-button block color="primary" (click)="irVerSolicitudesCitas">Ver solicitudes de citas</button>
+  <br><br>
+  <button class="buttonHeigth" ion-button block color="primary" (click)="irSolicitarCitas">Solicitar cita</button>
 
 </ion-content>

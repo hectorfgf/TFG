@@ -34,6 +34,8 @@ import {Http, HttpModule} from '@angular/http';
 import {HttpUsingFormDataService} from "../providers/httpService";
 import {LoginProfesorPageModule} from "../pages/login-profesor/login-profesor.module";
 import {HomeProfesorPageModule} from "../pages/home-profesor/home-profesor.module";
+import {ListadoHorariosPageModule} from "../pages/listado-horarios/listado-horarios.module";
+import { ControlHorariosProvider } from '../providers/control-horarios/control-horarios';
 
 
 export function getAuthHttp(http) {
@@ -68,6 +70,7 @@ export function getAuthHttp(http) {
     DetalleEncuestaPageModule,
     ListadoHijosPageModule,
     PerfilPageModule,
+    ListadoHorariosPageModule,
     ComponentsModule,
     HomeProfesorPageModule,
     PipesModule,
@@ -97,7 +100,8 @@ export function getAuthHttp(http) {
     EncuestasProvider,
     AutorizacionProvider,
     ControlHijosProvider,
-    HttpUsingFormDataService
+    HttpUsingFormDataService,
+    ControlHorariosProvider
   ]
 })
 export class AppModule {}
