@@ -35,11 +35,9 @@ export class CircularesPage {
       (data: any) => {
         this.circulares = [];
         this.circulares_filtered = [];
-        if(data.content){
-          for (let e of data.content) {
-            this.circulares.push(e);
-            this.circulares_filtered.push(e);
-          }
+        for (let e of data.content) {
+          this.circulares.push(e);
+          this.circulares_filtered.push(e);
         }
         if (refresher != 0) {
           refresher.complete();

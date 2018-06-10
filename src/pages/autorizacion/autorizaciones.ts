@@ -48,6 +48,7 @@ export class AutorizacionesPage {
         if(refresher != 0){
           refresher.complete();
         }
+        this.navCtrl.popToRoot();
         this.navCtrl.setRoot(LoginPage);
       }
     );
@@ -97,6 +98,7 @@ export class AutorizacionesPage {
               text: 'Aceptar',
               handler: data => {
                 this.controlSesionProvider.logOut();
+                this.navCtrl.popToRoot();
                 this.navCtrl.setRoot(LoginPage);
               }
             }

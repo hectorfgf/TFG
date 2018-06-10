@@ -32,6 +32,8 @@ import {PerfilPageModule} from "../pages/perfil/perfil.module";
 import {AuthConfig, AuthHttp} from "angular2-jwt";
 import {Http, HttpModule} from '@angular/http';
 import {HttpUsingFormDataService} from "../providers/httpService";
+import {LoginProfesorPageModule} from "../pages/login-profesor/login-profesor.module";
+import {HomeProfesorPageModule} from "../pages/home-profesor/home-profesor.module";
 
 
 export function getAuthHttp(http) {
@@ -57,6 +59,7 @@ export function getAuthHttp(http) {
     IonicModule.forRoot(MyApp),
     HttpClientModule,
     LoginPageModule,
+    LoginProfesorPageModule,
     RegistroPageModule,
     SmsValidarPageModule,
     CentroSeleccionPageModule,
@@ -66,6 +69,7 @@ export function getAuthHttp(http) {
     ListadoHijosPageModule,
     PerfilPageModule,
     ComponentsModule,
+    HomeProfesorPageModule,
     PipesModule,
     HttpModule
   ],

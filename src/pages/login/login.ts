@@ -4,7 +4,6 @@ import {ControlAccesoProvider} from "../../providers/control-acceso/control-acce
 import {ControlSesionProvider} from "../../providers/control-sesion/control-sesion";
 import {SmsValidarPage} from "../sms-validar/sms-validar";
 import {RegistroPage} from "../registro/registro";
-import {TabsPage} from "../tabs/tabs";
 
 
 @IonicPage()
@@ -21,9 +20,6 @@ export class LoginPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, private accesoControl: ControlAccesoProvider,
               private controlSesion: ControlSesionProvider, private toastr: ToastController) {
     this.telefono = "";
-    if(this.controlSesion.getToken()){
-      this.navCtrl.setRoot(TabsPage);
-    }
   }
 
   doLogin() {
@@ -58,6 +54,10 @@ export class LoginPage {
 
   goRegister(){
     this.navCtrl.push('RegistroPage');
+  }
+
+  goLoginProfesor(){
+    this.navCtrl.push('LoginProfesorPage');
   }
 
 }

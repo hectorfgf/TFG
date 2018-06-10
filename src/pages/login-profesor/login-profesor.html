@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-title>Inicio de sesión</ion-title>
+    <ion-title>Inicio de sesión Profesor</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -11,7 +11,10 @@
   <h1 ion-text text-center color="primary" style="font-weight:100">Hermerest</h1>
 
   <ion-item>
-    <ion-input [(ngModel)]="telefono" type="text" placeholder="Telefono"></ion-input>
+    <ion-input [(ngModel)]="username" type="text" placeholder="Nombre de usuario"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input [(ngModel)]="password" type="password" placeholder="Contraseña"></ion-input>
   </ion-item>
 
   <div padding>
@@ -20,11 +23,10 @@
       <ion-spinner *ngIf="disableLogin"></ion-spinner>
     </button>
     <p text-center>
-      <button ion-button block (click)="goRegister()" >
-        <span >Quiero Registrarme</span>
+      <button ion-button block (click)="goBack()" >
+        <span>Volver</span>
       </button>
     </p>
-    <a (click)="goLoginProfesor()"><p style="color: deepskyblue">¿Eres profesor? Inicia sesion aquí</p></a>
   </div>
 
 </ion-content>
