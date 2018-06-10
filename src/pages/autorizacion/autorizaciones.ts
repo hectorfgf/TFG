@@ -34,9 +34,11 @@ export class AutorizacionesPage {
       (data: any) => {
         this.autorizaciones = [];
         this.autorizaciones_filtered = [];
-        for(let e of data.content) {
-          this.autorizaciones.push(e);
-          this.autorizaciones_filtered.push(e);
+        if(data.success){
+          for(let e of data.content) {
+            this.autorizaciones.push(e);
+            this.autorizaciones_filtered.push(e);
+          }
         }
         if(refresher != 0){
           refresher.complete();

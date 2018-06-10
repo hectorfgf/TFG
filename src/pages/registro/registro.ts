@@ -3,6 +3,7 @@ import {IonicPage, NavController, NavParams, ToastController} from 'ionic-angula
 import {ControlAccesoProvider} from "../../providers/control-acceso/control-acceso";
 import {ControlSesionProvider} from "../../providers/control-sesion/control-sesion";
 import {CentroSeleccionPage} from "../centro-seleccion/centro-seleccion";
+import {JwtHelper} from "angular2-jwt";
 
 /**
  * Generated class for the RegistroPage page.
@@ -34,7 +35,10 @@ export class RegistroPage {
     this.accesoControl.register(this.telefono, this.nombre).subscribe((response:any)=>{
       console.log(response);
       if(response.success){
-        this.controlSesion.setUserId(response.content.id);
+        this.controlSesion.setToken(response.content);
+        const token = this.controlSesion.getToken();
+        const tokenDecodificado = new JwtHelper().decodeToken(token);
+        this.controlSesion.setUserRegisterInformation(tokenDecodificado);
         this.navCtrl.push('CentroSeleccionPage');
       }else{
         this.toastr.create(

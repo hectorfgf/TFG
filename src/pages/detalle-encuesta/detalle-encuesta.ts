@@ -27,7 +27,6 @@ export class DetalleEncuestaPage {
     this.activa = true;
     this.opcionesSeleccionadas= [];
     this.encuesta = this.navParams.get('encuesta');
-    console.log(this.encuesta);
     this.getContent();
   }
 
@@ -41,7 +40,6 @@ export class DetalleEncuestaPage {
         }
         this.content = data.content;
         if(moment().diff(moment(this.content.limitDate)) > 0) this.activa = false;
-        console.log(this.activa, moment(this.content.limitDate), moment());
       }
     }, ()=> {
       this.content = null;
@@ -50,9 +48,7 @@ export class DetalleEncuestaPage {
 
   enviarRespuesta(){
     for(let option of Object.keys(this.opcionesSeleccionadas)){
-      console.log(option,this.opcionesSeleccionadas[option]);
       if(this.opcionesSeleccionadas[option]){
-        console.log('aqui');
         this.encuestaProvider.responderEncuesta( this.controlSesion.getUserId(),option).subscribe(()=>{});
       }
     }
@@ -62,7 +58,6 @@ export class DetalleEncuestaPage {
   revisar(id){
     if(!this.content.multiple){
       for(let option of Object.keys(this.opcionesSeleccionadas)){
-        console.log(this.opcionesSeleccionadas, option, id);
         if(parseInt(option) !== id){
           this.opcionesSeleccionadas[option] = false;
         }else{

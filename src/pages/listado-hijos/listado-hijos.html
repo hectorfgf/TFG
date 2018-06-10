@@ -1,7 +1,7 @@
 
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>Mis hijos</ion-title>
   </ion-navbar>
 
@@ -9,11 +9,14 @@
 
 
 <ion-content padding>
-  <ion-list>
+  <ion-list *ngIf="hijos.length > 0">
     <ion-item> Hijos/as:</ion-item>
     <ion-item class="item-icon-right" *ngFor="let hijo of hijos">
       {{hijo.name}} {{hijo.surname}}
       <ion-icon (click)="deleteHijo(hijo)" name="close"></ion-icon>
     </ion-item>
   </ion-list>
+  <h2 *ngIf="hijos.length <= 0">
+    Aún no tienes hijos asociados. Contacte con su centro
+  </h2>
 </ion-content>

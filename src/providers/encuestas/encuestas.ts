@@ -1,23 +1,22 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {apiURL} from "../api-route";
+import {HttpUsingFormDataService} from "../httpService";
 
 @Injectable()
 export class EncuestasProvider {
 
-  constructor(public http: HttpClient) {
+  constructor(public http: HttpUsingFormDataService) {
 
   }
 
   getEncuestas(padre){
-    return this.http.get(apiURL+"parents/" + padre +'/messages?type=Poll');
+    return this.http.get("parents/" + padre +'/messages?type=Poll');
   }
 
   getEncuesta(pollId, padreId){
-    return this.http.get(apiURL+"polls/" + pollId + "?parent=" + padreId);
+    return this.http.get("polls/" + pollId + "?parent=" + padreId);
   }
 
   responderEncuesta(padre, option){
-    return this.http.post(apiURL+"pollreplies", {'parentId': padre, 'pollOptionId' : option});
+    return this.http.post("pollreplies", {'parentId': padre, 'pollOptionId' : option});
   }
 }

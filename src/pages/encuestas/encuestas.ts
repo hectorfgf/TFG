@@ -33,9 +33,11 @@ export class EncuestasPage {
       (data: any) => {
         this.encuestas = [];
         this.encuestas_filtered = [];
-        for(let e of data.content) {
-          this.encuestas.push(e);
-          this.encuestas_filtered.push(e);
+        if(data.success){
+          for(let e of data.content) {
+            this.encuestas.push(e);
+            this.encuestas_filtered.push(e);
+          }
         }
         if(refresher != 0){
           refresher.complete();

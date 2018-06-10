@@ -26,9 +26,8 @@ export class ListadoHijosPage {
               private toastr: ToastController, private controlSesion: ControlSesionProvider,  public alertCtrl: AlertController,) {
     this.userId = this.controlSesion.getUserId();
     this.controlHijos.getHijosPadre(this.userId).subscribe((response: any)=>{
-      console.log(response);
       if(response.success){
-        this.hijos = response.content;
+        this.hijos = response.content.childrens;
       }
     });
   }
