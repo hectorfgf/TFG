@@ -1,5 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import {HttpUsingFormDataService} from "../httpService";
 
 /*
   Generated class for the ControlSesionProvider provider.
@@ -10,7 +10,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class ControlSesionProvider {
 
-  constructor(public http: HttpClient) {
+  constructor(public http: HttpUsingFormDataService) {
 
   }
 
@@ -22,11 +22,30 @@ export class ControlSesionProvider {
     localStorage.setItem('isRegistered', user.found);
   }
 
+  setUserRegisterInformation(user){
+    localStorage.setItem('telefono', user.telephone);
+    localStorage.setItem('id', user.id);
+    localStorage.setItem('name', user.name);
+    localStorage.setItem('smsCode', user.smsCode);
+    localStorage.setItem('isRegistered', user.found);
+  }
+
   setUserId(id){
     localStorage.setItem('id', id);
   }
   getUserId(){
     return localStorage.getItem('id');
+  }
+  getTelephone(){
+    return localStorage.getItem('telefono');
+  }
+
+  setToken(token){
+    localStorage.setItem('token',token);
+  }
+
+  getToken(){
+    return localStorage.getItem('token');
   }
 
   getUserInformation(){
@@ -42,6 +61,18 @@ export class ControlSesionProvider {
   getSMSCodigo(){
     return localStorage.getItem('smsCode');
   }
+
+  getCodigo(){
+    return localStorage.getItem('smsCode');
+  }
+  setCodigo(code){
+    localStorage.setItem('smsCode', code);
+  }
+
+  setNombre(nombre){
+    localStorage.setItem('name', nombre);
+  }
+
 
   logOut(){
     localStorage.clear();

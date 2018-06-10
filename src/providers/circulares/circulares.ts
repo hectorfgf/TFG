@@ -1,19 +1,18 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {apiURL} from "../api-route";
+import {HttpUsingFormDataService} from "../httpService";
 
 @Injectable()
 export class CircularProvider {
 
-  constructor(public http: HttpClient) {
+  constructor(public http: HttpUsingFormDataService) {
 
   }
 
   getCirculares(padre){
-    return this.http.get(apiURL+"parents/" + padre +'/messages?type=Circular');
+    return this.http.get("parents/" + padre +'/messages?type=Circular');
   }
 
   getCircular(circularId){
-    return this.http.get(apiURL+"circulars/" + circularId);
+    return this.http.get("circulars/" + circularId);
   }
 }

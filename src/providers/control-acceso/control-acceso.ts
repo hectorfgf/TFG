@@ -1,25 +1,29 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {apiURL} from "../api-route";
+import {HttpUsingFormDataService} from "../httpService";
 
-/*
-  Generated class for the ControlAccesoProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class ControlAccesoProvider {
 
-  constructor(public http: HttpClient) {
+  constructor(public http: HttpUsingFormDataService) {
 
   }
 
   login(telefono){
-    return this.http.get(apiURL+'parents?telephone='+telefono);
+    return this.http.get('parents?telephone='+telefono);
+  }
+
+  loginCode(telefono,code){
+    return this.http.post('login',{'telephone': telefono, 'code': code});
+  }
+  loginProfesor(username,password){
+    return this.http.post('login',{'username': username, 'password': password});
   }
 
   register(telefono, nombre){
-    return this.http.post(apiURL+'parents', {'name' : nombre, 'telephone' : telefono});
+    return this.http.post('register', {'name' : nombre, 'telephone' : telefono});
+  }
+
+  cambiarNombre(padre, nombre){
+    return this.http.put("parents/" + padre, {'newName' : nombre});
   }
 }

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {apiURL} from "../api-route";
+
+import {HttpUsingFormDataService} from "../httpService";
 
 /*
   Generated class for the ControlAccesoProvider provider.
@@ -11,19 +12,19 @@ import {apiURL} from "../api-route";
 @Injectable()
 export class ControlCentrosProvider {
 
-  constructor(public http: HttpClient) {
+  constructor(public http: HttpUsingFormDataService) {
 
   }
 
  getCentrosPadre(id){
-  return this.http.get(apiURL+'centres/' +id);
+  return this.http.get('centres/' +id);
  }
 
  addCentro(centro, padre){
-   return this.http.post(apiURL+"parents/" + padre + '/centres/' + centro, {});
+   return this.http.post("parents/" + padre + '/centres/' + centro, {});
  }
 
  deleteCentros(padre){
-    return this.http.delete(apiURL+"parents/" + padre + "/centres");
+    return this.http.delete("parents/" + padre + "/centres");
  }
 }
