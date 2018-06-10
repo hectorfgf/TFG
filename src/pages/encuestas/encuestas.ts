@@ -47,8 +47,7 @@ export class EncuestasPage {
         if(refresher != 0){
           refresher.complete();
         }
-        this.navCtrl.popToRoot();
-        this.navCtrl.setRoot(LoginPage);
+        this.controlSesionProvider.logOut();
       }
     );
   }
@@ -94,8 +93,6 @@ export class EncuestasPage {
               text: 'Aceptar',
               handler: data => {
                 this.controlSesionProvider.logOut();
-                this.navCtrl.popToRoot();
-                this.navCtrl.setRoot(LoginPage);
               }
             }
           ]

@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpUsingFormDataService} from "../httpService";
+import {BehaviorSubject} from "rxjs/BehaviorSubject";
+import {Observable} from "rxjs/Observable";
 
 /*
   Generated class for the ControlSesionProvider provider.
@@ -10,8 +12,18 @@ import {HttpUsingFormDataService} from "../httpService";
 @Injectable()
 export class ControlSesionProvider {
 
+  login = new BehaviorSubject<boolean>(this.checkToken());
+
   constructor(public http: HttpUsingFormDataService) {
 
+  }
+
+  checkToken(): boolean {
+    return localStorage.getItem('token') ? true: false;
+  }
+
+  public getLoginStatus(): Observable<boolean> {
+    return this.login.asObservable();
   }
 
   setUserInformation(telefono, user){
@@ -42,6 +54,7 @@ export class ControlSesionProvider {
 
   setToken(token){
     localStorage.setItem('token',token);
+    this.login.next(true);
   }
 
   getToken(){
@@ -75,6 +88,7 @@ export class ControlSesionProvider {
 
 
   logOut(){
+    this.login.next(false);
     localStorage.clear();
   }
 

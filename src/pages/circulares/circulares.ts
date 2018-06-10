@@ -47,7 +47,7 @@ export class CircularesPage {
         if (refresher != 0) {
           refresher.complete();
         }
-        this.navCtrl.setRoot(LoginPage);
+        this.controlSesionProvider.logOut();
       }
     );
   }
@@ -97,7 +97,6 @@ export class CircularesPage {
               text: 'Aceptar',
               handler: data => {
                 this.controlSesionProvider.logOut();
-                this.navCtrl.setRoot(LoginPage);
               }
             }
           ]
