@@ -8,11 +8,10 @@
 
 
 <ion-content padding>
-  <ion-card *ngFor="let horario of horarios">
-    <ion-card-content>
-      {{horario.schedule.date| date:'dd/MM/yyyy'}}
-      {{horario.timeFrom.date| date:'H:mm'}}-
-      {{horario.timeTo.date| date:'H:mm'}}
-    </ion-card-content>
-  </ion-card>
+
+  <button class="buttonHeigth" ion-button block color="primary" (click)="addSchedule()">Añadir nuevo horario tutoria</button>
+  <br><br>
+  <button class="buttonHeigth" ion-button block color="primary" (click)="openCalendar()">Ver calendario de horario</button>
+  <br><br>
+
 </ion-content>
