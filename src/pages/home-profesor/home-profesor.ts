@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import {ActionSheetController, AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
-import {ListadoHijosPage} from "../listado-hijos/listado-hijos";
-import {CentroSeleccionPage} from "../centro-seleccion/centro-seleccion";
 import {PerfilPage} from "../perfil/perfil";
 import {ControlSesionProvider} from "../../providers/control-sesion/control-sesion";
 import {ListadoHorariosPage} from "../listado-horarios/listado-horarios";
@@ -20,7 +18,9 @@ import {ListadoHorariosPage} from "../listado-horarios/listado-horarios";
 })
 export class HomeProfesorPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public actionSheetCtrl: ActionSheetController, private controlSesionProvider: ControlSesionProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+              public alertCtrl: AlertController, public actionSheetCtrl: ActionSheetController,
+              private controlSesionProvider: ControlSesionProvider,) {
   }
 
   ionViewDidLoad() {
@@ -71,6 +71,7 @@ export class HomeProfesorPage {
   }
 
   irVerHorarios(){
-    this.navCtrl.push(ListadoHorariosPage)
+    this.navCtrl.push(ListadoHorariosPage);
+
   }
 }

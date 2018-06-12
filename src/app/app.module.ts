@@ -36,7 +36,9 @@ import {LoginProfesorPageModule} from "../pages/login-profesor/login-profesor.mo
 import {HomeProfesorPageModule} from "../pages/home-profesor/home-profesor.module";
 import {ListadoHorariosPageModule} from "../pages/listado-horarios/listado-horarios.module";
 import { ControlHorariosProvider } from '../providers/control-horarios/control-horarios';
-import {CalendarModule} from "ion2-calendar";
+import {CrearHorarioPageModule} from "../pages/crear-horario/crear-horario.module";
+import {NgCalendarModule} from "ionic2-calendar";
+import {EventModalPageModule} from "../pages/event-modal/event-modal.module";
 
 
 export function getAuthHttp(http) {
@@ -75,7 +77,9 @@ export function getAuthHttp(http) {
     ComponentsModule,
     HomeProfesorPageModule,
     PipesModule,
-    CalendarModule,
+    CrearHorarioPageModule,
+    NgCalendarModule,
+    EventModalPageModule,
     HttpModule
   ],
   bootstrap: [IonicApp],

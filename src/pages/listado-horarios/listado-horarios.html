@@ -2,6 +2,11 @@
 
   <ion-navbar color="primary">
     <ion-title>Horarios</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="addEvent()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -11,7 +16,17 @@
 
   <button class="buttonHeigth" ion-button block color="primary" (click)="addSchedule()">Añadir nuevo horario tutoria</button>
   <br><br>
-  <button class="buttonHeigth" ion-button block color="primary" (click)="openCalendar()">Ver calendario de horario</button>
-  <br><br>
+  <ion-title>
+    {{ viewTitle }}
+  </ion-title>
+  <calendar [eventSource]="eventSource"
+            [calendarMode]="calendar.mode"
+            [currentDate]="calendar.currentDate"
+            (onEventSelected)="onEventSelected($event)"
+            (onTitleChanged)="onViewTitleChanged($event)"
+            (onTimeSelected)="onTimeSelected($event)"
+            step="30"
+            class="calendar">
+  </calendar>
 
 </ion-content>

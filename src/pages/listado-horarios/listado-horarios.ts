@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import {IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
+import {AlertController, IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
 import {ControlHorariosProvider} from "../../providers/control-horarios/control-horarios";
 import {ControlSesionProvider} from "../../providers/control-sesion/control-sesion";
-import {CalendarComponentOptions, CalendarModal, CalendarResult} from "ion2-calendar";
 import moment from "moment";
+import {CrearHorarioPage} from "../crear-horario/crear-horario";
 
 /**
  * Generated class for the ListadoHorariosPage page.
@@ -19,46 +19,89 @@ import moment from "moment";
 })
 export class ListadoHorariosPage {
 
-  horarios:any[];
-  date: any[] = [];
+  eventSource = [];
+  viewTitle: string;
+  selectedDay = new Date();
+
+  calendar = {
+    mode: 'month',
+    currentDate: new Date()
+  };
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public  controlHorarios: ControlHorariosProvider, public controlSesion: ControlSesionProvider, public modalCtrl: ModalController) {
-    this.horarios = [];
+  constructor(public navCtrl: NavController, public navParams: NavParams, private modalCtrl: ModalController, private alertCtrl: AlertController, public  controlHorarios: ControlHorariosProvider, public controlSesion: ControlSesionProvider) {
+    let dates  =this.eventSource;
     this.controlHorarios.getHorarios(this.controlSesion.getUserId()).subscribe((response: any) =>{
       if(response.success){
-        this.horarios = response.content.schedules;
-        for(let horario of this.horarios){
-          console.log(moment(horario.schedule.date).format('YYYY-MM-DD'));
-          this.date.push(new Date(horario.schedule.date));
+        let horarios = response.content.schedules;
+        for(let horario of horarios){
+          const horaIni = new Date(horario.schedule.date);
+          const horaFin = new Date(horario.schedule.date);
+          horaIni.setHours(parseInt(moment(horario.timeFrom.date).format('H')));
+          horaIni.setMinutes(parseInt(moment(horario.timeFrom.date).format('mm')));
+          horaFin.setHours(parseInt(moment(horario.timeTo.date).format('H')));
+          horaFin.setMinutes(parseInt(moment(horario.timeTo.date).format('mm')));
+          dates.push({title: horario.id, startTime: horaIni, endTime:horaFin, allDay: false});
         }
+      }
+      this.eventSource = [];
+      setTimeout(() => {
+        this.eventSource = dates;
+        console.log(this.eventSource);
+      });
+
+    });
+  }
+  addEvent() {
+    let modal = this.modalCtrl.create('EventModalPage', {selectedDay: this.selectedDay});
+    modal.present();
+    modal.onDidDismiss(data => {
+      if (data) {
+        console.log(data);
+        let eventData = data;
+
+        eventData.startTime = new Date(data.startTime);
+        eventData.endTime = new Date(data.endTime);
+
+        let events = this.eventSource;
+        events.push(eventData);
+        this.eventSource = [];
+        setTimeout(() => {
+          this.eventSource = events;
+          console.log(this.eventSource);
+        });
       }
     });
   }
 
-  openCalendar() {
-    const options = {
-      pickMode: 'multi',
-      title: 'Tutorias Disponibles',
-      defaultDates: this.date
-    };
 
-    let myCalendar =  this.modalCtrl.create(CalendarModal, {
-      options: options
-    });
-
-    myCalendar.present();
-
-    myCalendar.onDidDismiss((date: CalendarResult[], type: string) => {
-      console.log(date);
-    })
-  }
   addSchedule(){
-    console.log('te miro y te añado');
+    this.navCtrl.push(CrearHorarioPage);
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ListadoHorariosPage');
+  }
+
+
+  onViewTitleChanged(title) {
+    this.viewTitle = title;
+  }
+
+  onEventSelected(event) {
+    let start = moment(event.startTime).format('LLLL');
+    let end = moment(event.endTime).format('LLLL');
+
+    let alert = this.alertCtrl.create({
+      title: '' + event.title,
+      subTitle: 'From: ' + start + '<br>To: ' + end,
+      buttons: ['OK']
+    })
+    alert.present();
+  }
+
+  onTimeSelected(ev) {
+    this.selectedDay = ev.selectedTime;
   }
 
 }
