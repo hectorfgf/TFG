@@ -21,6 +21,8 @@
   </ion-title>
   <calendar [eventSource]="eventSource"
             [calendarMode]="calendar.mode"
+            [locale]="calendar.locale"
+            [startingDayMonth]="calendar.startingDayMonth"
             [currentDate]="calendar.currentDate"
             (onEventSelected)="onEventSelected($event)"
             (onTitleChanged)="onViewTitleChanged($event)"

@@ -1,4 +1,4 @@
-import {NgModule, ErrorHandler} from '@angular/core';
+import {NgModule, ErrorHandler, LOCALE_ID} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {IonicApp, IonicModule, IonicErrorHandler} from 'ionic-angular';
 import {MyApp} from './app.component';
@@ -39,6 +39,10 @@ import { ControlHorariosProvider } from '../providers/control-horarios/control-h
 import {CrearHorarioPageModule} from "../pages/crear-horario/crear-horario.module";
 import {NgCalendarModule} from "ionic2-calendar";
 import {EventModalPageModule} from "../pages/event-modal/event-modal.module";
+import { registerLocaleData } from '@angular/common';
+import localeEs from '@angular/common/locales/es';
+registerLocaleData(localeEs);
+
 
 
 export function getAuthHttp(http) {
@@ -107,7 +111,8 @@ export function getAuthHttp(http) {
     AutorizacionProvider,
     ControlHijosProvider,
     HttpUsingFormDataService,
-    ControlHorariosProvider
+    ControlHorariosProvider,
+    { provide: LOCALE_ID, useValue: 'es-ES' }
   ]
 })
 export class AppModule {}

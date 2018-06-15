@@ -25,7 +25,9 @@ export class ListadoHorariosPage {
 
   calendar = {
     mode: 'month',
-    currentDate: new Date()
+    currentDate: new Date(),
+    locale: 'es-ES',
+    startingDayMonth :1
   };
 
 
@@ -35,6 +37,7 @@ export class ListadoHorariosPage {
       if(response.success){
         let horarios = response.content.schedules;
         for(let horario of horarios){
+          console.log(horario);
           const horaIni = new Date(horario.schedule.date);
           const horaFin = new Date(horario.schedule.date);
           horaIni.setHours(parseInt(moment(horario.timeFrom.date).format('H')));
