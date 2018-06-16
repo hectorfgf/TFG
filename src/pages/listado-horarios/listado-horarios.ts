@@ -107,7 +107,7 @@ export class ListadoHorariosPage {
               title = 'Cancelada';
               break;
           }
-          dates.push({title: title, startTime: horaIni, endTime:horaFin, allDay: false});
+          dates.push({title: title, startTime: horaIni, endTime:horaFin, allDay: false, data: horario});
         }
       }
       this.eventSource = [];
@@ -122,24 +122,29 @@ export class ListadoHorariosPage {
   }
 
   onEventSelected(event) {
-    let start = moment(event.startTime).format('LLLL');
-    let end = moment(event.endTime).format('LLLL');
-
-    let alert = this.alertCtrl.create({
-      title: '' + event.title,
-      subTitle: 'From: ' + start + '<br>To: ' + end,
-      buttons: ['OK']
-    })
-    alert.present();
+    console.log(event);
+    switch(event.data.status){
+      case 0:
+        let modal = this.modalCtrl.create('CitaDisponiblePage', {schedule: event.data});
+        modal.present();
+        modal.onDidDismiss(data => {
+          if (data) {
+            this.loadEvents();
+          }
+        });
+        break;
+      case 1:
+        break;
+      case 2:
+        break;
+      case 3:
+        break;
+    }
   }
 
   onTimeSelected(event) {
     this.selectedDay = event.selectedTime;
   }
-
-  // onDateChange(event){
-  //   this.myCalendar.calendarMode = 'day';
-  // }
 
   changeMode(mode) {
     this.calendar.mode = mode;

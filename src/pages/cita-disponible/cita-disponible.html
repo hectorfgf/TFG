@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-buttons start>
+      <button ion-button icon-only (click)="cancel()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>{{schedule.schedule.date | date: 'dd-MM-yyyy'}} {{schedule.timeFrom.date | date: 'H:mm'}}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only color="royal" (click)="eliminar()">
+        <ion-icon name="trash" ></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-searchbar [(ngModel)]="searchTerm" ></ion-searchbar>
+
+  <ion-list>
+    <ion-item (click)="select(alumno.id)" *ngFor="let alumno of alumnos | searchStudent: searchTerm">
+      <ion-icon *ngIf="alumno.id != alumno_selected" name="checkbox-outline" color="primary"></ion-icon>
+      <ion-icon *ngIf="alumno.id == alumno_selected" name="checkbox" color="primary"></ion-icon>
+      {{alumno.name}} {{alumno.surname}}
+    </ion-item>
+  </ion-list>
+
+  <button ion-button full icon-left (click)="add()">
+    <ion-icon name="checkmark"></ion-icon>
+    Crear cita
+  </button>
+</ion-content>

@@ -38,4 +38,18 @@ export class ControlHorariosProvider {
       teacher: teacher
     });
   }
+
+  getAlumnos(profesor){
+    return this.http.get('teachers/'+profesor+'/students');
+  }
+
+  eliminar(schedule){
+    return this.http.delete('schedules/'+schedule);
+  }
+
+  asociarAlumnoHorario(alumno, schedule, estado){
+    return this.http.post('schedules/'+schedule+'/students/'+alumno, {
+      status: estado
+    });
+  }
 }

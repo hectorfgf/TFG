@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { SearchPipe } from './search/search';
 import {IonicModule} from "ionic-angular";
+import {SearchStudentPipe} from "./search/searchStudent";
 @NgModule({
-  declarations: [SearchPipe],
+  declarations: [SearchPipe, SearchStudentPipe],
   imports: [IonicModule],
-  exports: [SearchPipe]
+  exports: [SearchPipe, SearchStudentPipe]
 })
 export class PipesModule {}

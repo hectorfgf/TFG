@@ -42,6 +42,7 @@ import {EventModalPageModule} from "../pages/event-modal/event-modal.module";
 import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
 import {BorrarHorariosPageModule} from "../pages/borrar-horarios/borrar-horarios.module";
+import {CitaDisponiblePageModule} from "../pages/cita-disponible/cita-disponible.module";
 registerLocaleData(localeEs);
 
 
@@ -86,6 +87,7 @@ export function getAuthHttp(http) {
     NgCalendarModule,
     EventModalPageModule,
     BorrarHorariosPageModule,
+    CitaDisponiblePageModule,
     HttpModule
   ],
   bootstrap: [IonicApp],
