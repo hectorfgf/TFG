@@ -1,9 +1,15 @@
-import { Component } from '@angular/core';
-import {AlertController, IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
+import {Component, ViewChild} from '@angular/core';
+import {
+  ActionSheetController, AlertController, IonicPage, ModalController, NavController,
+  NavParams
+} from 'ionic-angular';
 import {ControlHorariosProvider} from "../../providers/control-horarios/control-horarios";
 import {ControlSesionProvider} from "../../providers/control-sesion/control-sesion";
-import moment from "moment";
+import moment from "moment-with-locales-es6";
 import {CrearHorarioPage} from "../crear-horario/crear-horario";
+import {CalendarComponent} from "ionic2-calendar/calendar";
+import {DatePipe} from "@angular/common";
+import {PerfilPage} from "../perfil/perfil";
 
 /**
  * Generated class for the ListadoHorariosPage page.
@@ -11,6 +17,7 @@ import {CrearHorarioPage} from "../crear-horario/crear-horario";
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
+
 
 @IonicPage()
 @Component({
@@ -20,73 +27,86 @@ import {CrearHorarioPage} from "../crear-horario/crear-horario";
 export class ListadoHorariosPage {
 
   eventSource = [];
-  viewTitle: string;
+  viewTitle: string = '';
   selectedDay = new Date();
+  isToday:boolean;
 
   calendar = {
     mode: 'month',
     currentDate: new Date(),
     locale: 'es-ES',
-    startingDayMonth :1
+    startingDayMonth :1,
+    showEventDetail: false,
+    noEventsLabel: '',
+    startHour: 7,
+    endHour: 21,
+    timeInterval: 15,
+    dateFormatter: {
+      formatMonthViewDay: function(date:Date) {
+        return date.getDate().toString();
+      },
+      formatDayViewHourColumn: function(date:Date) {
+        return  date.getHours().toString() + ':' + ((date.getMinutes().toString() < '10') ? '0'+date.getMinutes().toString() : date.getMinutes().toString());
+      }
+    }
   };
 
+  @ViewChild(CalendarComponent) myCalendar:CalendarComponent;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private modalCtrl: ModalController, private alertCtrl: AlertController, public  controlHorarios: ControlHorariosProvider, public controlSesion: ControlSesionProvider) {
-    let dates  =this.eventSource;
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+              private modalCtrl: ModalController, private alertCtrl: AlertController,
+              public  controlHorarios: ControlHorariosProvider, public controlSesion: ControlSesionProvider,
+              public actionSheetCtrl: ActionSheetController) {
+    this.loadEvents();
+  }
+
+  addSchedule(){
+    let modal = this.modalCtrl.create('EventModalPage');
+    modal.present();
+    modal.onDidDismiss(data => {
+      if (data) {
+        this.loadEvents();
+      }
+    });
+  }
+
+  loadEvents(){
+    let dates = [];
     this.controlHorarios.getHorarios(this.controlSesion.getUserId()).subscribe((response: any) =>{
       if(response.success){
         let horarios = response.content.schedules;
         for(let horario of horarios){
-          console.log(horario);
           const horaIni = new Date(horario.schedule.date);
           const horaFin = new Date(horario.schedule.date);
           horaIni.setHours(parseInt(moment(horario.timeFrom.date).format('H')));
           horaIni.setMinutes(parseInt(moment(horario.timeFrom.date).format('mm')));
           horaFin.setHours(parseInt(moment(horario.timeTo.date).format('H')));
           horaFin.setMinutes(parseInt(moment(horario.timeTo.date).format('mm')));
-          dates.push({title: horario.id, startTime: horaIni, endTime:horaFin, allDay: false});
+          let title = '';
+          switch (horario.status) {
+            case 0:
+              title = 'Disponible';
+              break;
+            case 1:
+              title = 'Petición: ' + horario.student.name + ' ' + horario.student.surname;
+              break;
+            case 2:
+              title = 'Cita: ' + horario.student.name + ' ' + horario.student.surname;
+              break;
+            case 3:
+              title = 'Cancelada';
+              break;
+          }
+          dates.push({title: title, startTime: horaIni, endTime:horaFin, allDay: false});
         }
       }
       this.eventSource = [];
       setTimeout(() => {
         this.eventSource = dates;
-        console.log(this.eventSource);
       });
 
     });
   }
-  addEvent() {
-    let modal = this.modalCtrl.create('EventModalPage', {selectedDay: this.selectedDay});
-    modal.present();
-    modal.onDidDismiss(data => {
-      if (data) {
-        console.log(data);
-        let eventData = data;
-
-        eventData.startTime = new Date(data.startTime);
-        eventData.endTime = new Date(data.endTime);
-
-        let events = this.eventSource;
-        events.push(eventData);
-        this.eventSource = [];
-        setTimeout(() => {
-          this.eventSource = events;
-          console.log(this.eventSource);
-        });
-      }
-    });
-  }
-
-
-  addSchedule(){
-    this.navCtrl.push(CrearHorarioPage);
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ListadoHorariosPage');
-  }
-
-
   onViewTitleChanged(title) {
     this.viewTitle = title;
   }
@@ -103,8 +123,68 @@ export class ListadoHorariosPage {
     alert.present();
   }
 
-  onTimeSelected(ev) {
-    this.selectedDay = ev.selectedTime;
+  onTimeSelected(event) {
+    this.selectedDay = event.selectedTime;
   }
 
+  // onDateChange(event){
+  //   this.myCalendar.calendarMode = 'day';
+  // }
+
+  changeMode(mode) {
+    this.calendar.mode = mode;
+  }
+
+  onCurrentDateChanged(event:Date) {
+    var today = new Date();
+    today.setHours(0, 0, 0, 0);
+    event.setHours(0, 0, 0, 0);
+    this.isToday = today.getTime() === event.getTime();
+  }
+
+  today() {
+    this.calendar.currentDate = new Date();
+  }
+
+  settings() {
+    let buttons = [];
+    buttons.push({
+      text: 'Mi perfil',
+      handler: () => {
+        this.navCtrl.push(PerfilPage);
+      }
+    });
+    buttons.push({
+      text: 'Cerrar sesion',
+      handler: () => {
+        this.alertCtrl.create({
+          title: '¿Desea cerrar session?',
+          buttons: [
+            {
+              text: 'Cancelar',
+              role: 'cancel',
+              handler: data => {
+              }
+            },
+            {
+              text: 'Aceptar',
+              handler: data => {
+                this.controlSesion.logOut();
+              }
+            }
+          ]
+        }).present();
+
+      }
+    });
+    buttons.push({
+      text: 'CANCELAR',
+      role: 'cancel',
+    });
+
+    let actionSheet = this.actionSheetCtrl.create({
+      buttons: buttons
+    });
+    actionSheet.present();
+  }
 }

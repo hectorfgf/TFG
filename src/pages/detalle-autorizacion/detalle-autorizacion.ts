@@ -62,7 +62,7 @@ export class DetalleAutorizacionPage {
           handler: data => {
             if(data.code === this.controlSesion.getCodigo()){
               if(id == null){
-                this.autorizacionProvider.sendAutorization(reply, this.controlSesion.getUserId(), this.autorizacion.id,this.autorizacion.studentId)
+                this.autorizacionProvider.sendAutorization(reply ? 1 : 0, this.controlSesion.getUserId(), this.autorizacion.id,this.autorizacion.studentId)
                   .subscribe((response: any) => {
                     if(response.success){
                       this.content.authorized=response.content.authorized;
@@ -71,7 +71,7 @@ export class DetalleAutorizacionPage {
                     }
                   });
               }else{
-                this.autorizacionProvider.actualiceAutorization(id,reply, this.controlSesion.getUserId(), this.autorizacion.id,this.autorizacion.studentId)
+                this.autorizacionProvider.actualiceAutorization(id,reply ? 1 : 0, this.controlSesion.getUserId(), this.autorizacion.id,this.autorizacion.studentId)
                   .subscribe((response: any) => {
                     if(response.success){
                       this.content.authorized=response.content.authorized;

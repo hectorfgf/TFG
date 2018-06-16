@@ -20,7 +20,7 @@ export class HomeProfesorPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public alertCtrl: AlertController, public actionSheetCtrl: ActionSheetController,
-              private controlSesionProvider: ControlSesionProvider,) {
+              private controlSesionProvider: ControlSesionProvider) {
   }
 
   ionViewDidLoad() {

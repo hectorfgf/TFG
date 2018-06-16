@@ -18,4 +18,16 @@ export class ControlHorariosProvider {
   getHorarios(profesor){
     return this.http.get('teachers/'+profesor+'/schedules');
   }
+
+  postHorarios(dateFrom,dateTo,timeFrom,timeTo,daysOfWek,segment,teacher){
+    return this.http.post('schedules', {
+      dateFrom: dateFrom,
+      dateTo: dateTo,
+      timeFrom: timeFrom,
+      timeTo: timeTo,
+      daysOfWek : daysOfWek,
+      segment: segment,
+      teacher: teacher
+    });
+  }
 }

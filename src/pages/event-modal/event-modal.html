@@ -5,33 +5,68 @@
         <ion-icon name="close"></ion-icon>
       </button>
     </ion-buttons>
-    <ion-title>Event Details</ion-title>
+    <ion-title>Crear Nuevos Horarios</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
+
     <ion-item>
-      <ion-input type="text" placeholder="Title" [(ngModel)]="event.title"></ion-input>
+      <ion-label>Fecha inicial</ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD MM YYYY" max="2050" [(ngModel)]="startTime"
+                    [min]="minDate"></ion-datetime>
     </ion-item>
 
     <ion-item>
-      <ion-label>Start</ion-label>
-      <ion-datetime displayFormat="MM/DD/YYYY HH:mm" pickerFormat="MMM D:HH:mm" [(ngModel)]="event.startTime" [min]="minDate"></ion-datetime>
+      <ion-label>Fecha final</ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD MM YYYY" max="2050" [(ngModel)]="endTime"
+                    [min]="startTime"></ion-datetime>
     </ion-item>
-
     <ion-item>
-      <ion-label>End</ion-label>
-      <ion-datetime displayFormat="MM/DD/YYYY HH:mm" pickerFormat="MMM D:HH:mm" [(ngModel)]="event.endTime" [min]="minDate"></ion-datetime>
+      <ion-label>Hora inicial</ion-label>
+      <ion-datetime displayFormat="H:mm" pickerFormat="H:mm" [hourValues]="hours" [(ngModel)]="startHour"></ion-datetime>
     </ion-item>
-
     <ion-item>
-      <ion-label>All Day?</ion-label>
-      <ion-checkbox [(ngModel)]="event.allDay"></ion-checkbox>
+      <ion-label>Hora final</ion-label>
+      <ion-datetime displayFormat="H:mm" pickerFormat="H:mm" [hourValues]="hours" [(ngModel)]="endHour" [min]="startHour"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>Intervalo entre citas</ion-label>
+      <ion-input type="number" [(ngModel)]="interval" placeholder="En minutos"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Lunes</ion-label>
+      <ion-checkbox [(ngModel)]="week[1]"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Martes</ion-label>
+      <ion-checkbox [(ngModel)]="week[2]"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Miércoles</ion-label>
+      <ion-checkbox [(ngModel)]="week[3]"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Jueves</ion-label>
+      <ion-checkbox [(ngModel)]="week[4]"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Viernes</ion-label>
+      <ion-checkbox [(ngModel)]="week[5]"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Sabado</ion-label>
+      <ion-checkbox [(ngModel)]="week[6]"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Domingo</ion-label>
+      <ion-checkbox [(ngModel)]="week[0]"></ion-checkbox>
     </ion-item>
   </ion-list>
 
-  <button ion-button full icon-left (click)="save()">
-    <ion-icon name="checkmark"></ion-icon> Add Event
+  <button ion-button full icon-left (click)="add()">
+    <ion-icon name="checkmark"></ion-icon>
+    Añadir nuevas horas
   </button>
 </ion-content>

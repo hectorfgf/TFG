@@ -6,8 +6,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import {LoginPage} from "../pages/login/login";
 import {JwtHelper} from "angular2-jwt";
 import {TabsPage} from "../pages/tabs/tabs";
-import {HomeProfesorPage} from "../pages/home-profesor/home-profesor";
 import {ControlSesionProvider} from "../providers/control-sesion/control-sesion";
+import {ListadoHorariosPage} from "../pages/listado-horarios/listado-horarios";
 
 @Component({
   templateUrl: 'app.html'
@@ -28,7 +28,7 @@ export class MyApp {
           if(decodeToken.rol === 'progenitor'){
             this.rootPage = TabsPage;
           }else if(decodeToken.rol==='teacher'){
-            this.rootPage = HomeProfesorPage;
+            this.rootPage = ListadoHorariosPage;
           }
         } else {
           this.rootPage = LoginPage;

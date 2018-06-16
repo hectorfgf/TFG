@@ -3,8 +3,8 @@
   <ion-navbar color="primary">
     <ion-title>Horarios</ion-title>
     <ion-buttons end>
-      <button ion-button icon-only (click)="addEvent()">
-        <ion-icon name="add"></ion-icon>
+      <button ion-button icon-only color="royal" (click)="settings()">
+        <ion-icon name="settings" ></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -16,14 +16,28 @@
 
   <button class="buttonHeigth" ion-button block color="primary" (click)="addSchedule()">Añadir nuevo horario tutoria</button>
   <br><br>
-  <ion-title>
-    {{ viewTitle }}
-  </ion-title>
+  <ion-navbar color="primary">
+    <p style ="color:white">
+      {{ viewTitle }}
+    </p>
+      <ion-buttons end>
+        <button ion-button [disabled]="isToday" (click)="today()">Hoy</button>
+        <button ion-button (click)="changeMode('month')">Mes</button>
+        <button ion-button (click)="changeMode('day')">Día</button>
+      </ion-buttons>
+  </ion-navbar>
   <calendar [eventSource]="eventSource"
             [calendarMode]="calendar.mode"
             [locale]="calendar.locale"
             [startingDayMonth]="calendar.startingDayMonth"
             [currentDate]="calendar.currentDate"
+            [startHour]="calendar.startHour"
+            [endHour]="calendar.endHour"
+            [noEventsLabel] = "calendar.noEventsLabel"
+            [showEventDetail] = "calendar.showEventDetail"
+            [timeInterval]="calendar.timeInterval"
+            [dateFormatter]="calendar.dateFormatter"
+            (onCurrentDateChanged)="onCurrentDateChanged($event)"
             (onEventSelected)="onEventSelected($event)"
             (onTitleChanged)="onViewTitleChanged($event)"
             (onTimeSelected)="onTimeSelected($event)"

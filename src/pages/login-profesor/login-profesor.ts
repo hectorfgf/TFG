@@ -3,6 +3,7 @@ import {IonicPage, NavController, NavParams, ToastController} from 'ionic-angula
 import {ControlSesionProvider} from "../../providers/control-sesion/control-sesion";
 import {ControlAccesoProvider} from "../../providers/control-acceso/control-acceso";
 import {JwtHelper} from "angular2-jwt";
+import {ListadoHorariosPage} from "../listado-horarios/listado-horarios";
 
 /**
  * Generated class for the LoginProfesorPage page.
@@ -35,8 +36,9 @@ export class LoginProfesorPage {
       if(response.success){
         this.controlSesion.setToken(response.content);
         const decodeToken = new JwtHelper().decodeToken(response.content);
+        this.controlSesion.setNombre(decodeToken.username);
         this.controlSesion.setUserId(decodeToken.id);
-        this.navCtrl.setRoot('HomeProfesorPage');
+        this.navCtrl.setRoot('ListadoHorariosPage');
       }else{
         this.toastr.create(
           {

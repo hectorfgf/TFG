@@ -17,6 +17,6 @@ export class EncuestasProvider {
   }
 
   responderEncuesta(padre, option){
-    return this.http.post("pollreplies", {'parentId': padre, 'pollOptionId' : option});
+    return this.http.post("pollsreplies", {'parent': padre, 'pollOptionId' : option});
   }
 }

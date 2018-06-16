@@ -24,12 +24,11 @@
     <ion-item *ngIf="content.replied == true">La encuesta ya ha sido respondida.</ion-item>
     <div *ngIf="content.replied == false && activa == true">
       <ion-item *ngFor="let option of content.options">
-        <ion-label>{{option.name}}</ion-label>
+        <ion-label>{{option.option}}</ion-label>
         <ion-checkbox color="primary" [(ngModel)]="opcionesSeleccionadas[option.id]" (click)="revisar(option.id)"></ion-checkbox>
       </ion-item>
     </div>
     <ion-item>Fecha límite:<p style="color : red" *ngIf="activa === false">EXCEDIDA</p> <p>{{content.sendingDate | date:'H:mm dd/MM/yyyy'}}</p></ion-item>
-    <ion-item></ion-item>
     </ion-list>
     <button ion-button block
           *ngIf="content.replied == false && activa == true"

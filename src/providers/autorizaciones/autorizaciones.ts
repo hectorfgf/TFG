@@ -17,9 +17,9 @@ export class AutorizacionProvider {
   }
 
   sendAutorization(respuesta, padre, autorizacion, estudiante){
-    return this.http.post( "authorizationreplies", {'authorized' : respuesta, 'parentId': padre, 'authorizationId' : autorizacion, 'studentId' : estudiante});
+    return this.http.post( "authorizationsreplies", {'authorized' : respuesta, 'parent': padre, 'authorization' : autorizacion, 'student' : estudiante});
   }
   actualiceAutorization(id,respuesta, padre, autorizacion, estudiante){
-    return this.http.put( "authorizationreplies/"+ id, {'authorized' : respuesta, 'parentId': padre, 'authorizationId' : autorizacion, 'studentId' : estudiante});
+    return this.http.put( "authorizationsreplies/"+ id, {'authorized' : respuesta, 'parent': padre, 'authorization' : autorizacion, 'student' : estudiante});
   }
 }
