@@ -30,4 +30,12 @@ export class ControlHorariosProvider {
       teacher: teacher
     });
   }
+
+  postDeleteHorarios(dateFrom,dateTo,teacher){
+    return this.http.post('schedules/deleteRange', {
+      dateFrom: dateFrom,
+      dateTo: dateTo,
+      teacher: teacher
+    });
+  }
 }

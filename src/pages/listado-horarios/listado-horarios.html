@@ -13,9 +13,8 @@
 
 
 <ion-content padding>
-
   <button class="buttonHeigth" ion-button block color="primary" (click)="addSchedule()">Añadir nuevo horario tutoria</button>
-  <br><br>
+  <button class="buttonHeigth" ion-button block color="danger" (click)="removeSchedules()">Eliminar horarios disponibles</button>
   <ion-navbar color="primary">
     <p style ="color:white">
       {{ viewTitle }}
@@ -44,5 +43,4 @@
             step="30"
             class="calendar">
   </calendar>
-
 </ion-content>

@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-buttons start>
+      <button ion-button icon-only (click)="cancel()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Eliminar Horarios Disponibles</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <br>
+  <ion-list>
+    <ion-item>
+      <ion-label>Fecha inicial</ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD MM YYYY" max="2050" [(ngModel)]="startTime"
+                    [min]="minDate"></ion-datetime>
+    </ion-item>
+    <br>
+    <ion-item>
+      <ion-label>Fecha final</ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD MM YYYY" max="2050" [(ngModel)]="endTime"
+                    [min]="startTime"></ion-datetime>
+    </ion-item>
+    <br>
+  </ion-list>
+  <button ion-button full icon-left color="danger" (click)="delete()">
+    <ion-icon name="trash"></ion-icon>
+    Eliminar horas
+  </button>
+</ion-content>

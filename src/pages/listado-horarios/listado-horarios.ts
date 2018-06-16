@@ -10,6 +10,7 @@ import {CrearHorarioPage} from "../crear-horario/crear-horario";
 import {CalendarComponent} from "ionic2-calendar/calendar";
 import {DatePipe} from "@angular/common";
 import {PerfilPage} from "../perfil/perfil";
+import {BorrarHorariosPage} from "../borrar-horarios/borrar-horarios";
 
 /**
  * Generated class for the ListadoHorariosPage page.
@@ -62,6 +63,15 @@ export class ListadoHorariosPage {
 
   addSchedule(){
     let modal = this.modalCtrl.create('EventModalPage');
+    modal.present();
+    modal.onDidDismiss(data => {
+      if (data) {
+        this.loadEvents();
+      }
+    });
+  }
+  removeSchedules(){
+    let modal = this.modalCtrl.create('BorrarHorariosPage');
     modal.present();
     modal.onDidDismiss(data => {
       if (data) {
