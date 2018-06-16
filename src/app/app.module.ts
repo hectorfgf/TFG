@@ -43,6 +43,7 @@ import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
 import {BorrarHorariosPageModule} from "../pages/borrar-horarios/borrar-horarios.module";
 import {CitaDisponiblePageModule} from "../pages/cita-disponible/cita-disponible.module";
+import {ProfesorProfilePageModule} from "../pages/profesor-profile/profesor-profile.module";
 registerLocaleData(localeEs);
 
 
@@ -88,6 +89,7 @@ export function getAuthHttp(http) {
     EventModalPageModule,
     BorrarHorariosPageModule,
     CitaDisponiblePageModule,
+    ProfesorProfilePageModule,
     HttpModule
   ],
   bootstrap: [IonicApp],

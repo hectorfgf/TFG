@@ -1,16 +1,14 @@
 import {Component, ViewChild} from '@angular/core';
 import {
   ActionSheetController, AlertController, IonicPage, ModalController, NavController,
-  NavParams
+  NavParams, ToastController
 } from 'ionic-angular';
 import {ControlHorariosProvider} from "../../providers/control-horarios/control-horarios";
 import {ControlSesionProvider} from "../../providers/control-sesion/control-sesion";
-import moment from "moment-with-locales-es6";
-import {CrearHorarioPage} from "../crear-horario/crear-horario";
 import {CalendarComponent} from "ionic2-calendar/calendar";
-import {DatePipe} from "@angular/common";
-import {PerfilPage} from "../perfil/perfil";
 import {BorrarHorariosPage} from "../borrar-horarios/borrar-horarios";
+import {ProfesorProfilePage} from "../profesor-profile/profesor-profile";
+import moment from "moment";
 
 /**
  * Generated class for the ListadoHorariosPage page.
@@ -57,7 +55,7 @@ export class ListadoHorariosPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,
               private modalCtrl: ModalController, private alertCtrl: AlertController,
               public  controlHorarios: ControlHorariosProvider, public controlSesion: ControlSesionProvider,
-              public actionSheetCtrl: ActionSheetController) {
+              public actionSheetCtrl: ActionSheetController, private toastr: ToastController) {
     this.loadEvents();
   }
 
@@ -104,7 +102,7 @@ export class ListadoHorariosPage {
               title = 'Cita: ' + horario.student.name + ' ' + horario.student.surname;
               break;
             case 3:
-              title = 'Cancelada';
+              title = 'Cancelada: ' + horario.student.name + ' ' + horario.student.surname;
               break;
           }
           dates.push({title: title, startTime: horaIni, endTime:horaFin, allDay: false, data: horario});
@@ -136,8 +134,86 @@ export class ListadoHorariosPage {
       case 1:
         break;
       case 2:
+        this.alertCtrl.create({
+          title: '¿Desea cancelar la cita?',
+          buttons: [
+            {
+              text: 'Cancelar',
+              role: 'cancel',
+              handler: data => {
+              }
+            },
+            {
+              text: 'Aceptar',
+              handler: data => {
+                this.controlHorarios.cancelarCita(event.data.id).subscribe( (response:any) => {
+                  if(response.success){
+                    this.loadEvents();
+                  }else{
+                    this.toastr.create(
+                      {
+                        message: 'Ha ocurrido un error, no se pudo cancelar la cita',
+                        duration: 3000,
+                        position: 'bottom',
+                        showCloseButton: true
+                      }
+                    ).present();
+                  }
+                }, ()=>{
+                  this.toastr.create(
+                    {
+                      message: 'Ha ocurrido un error, no se pudo cancelar la cita',
+                      duration: 3000,
+                      position: 'bottom',
+                      showCloseButton: true
+                    }
+                  ).present();
+                });
+              }
+            }
+          ]
+        }).present();
         break;
       case 3:
+        this.alertCtrl.create({
+          title: '¿Desea restablecer la cita?',
+          buttons: [
+            {
+              text: 'Cancelar',
+              role: 'cancel',
+              handler: data => {
+              }
+            },
+            {
+              text: 'Aceptar',
+              handler: data => {
+                this.controlHorarios.restablecerCita(event.data.id).subscribe( (response:any) => {
+                  if(response.success){
+                    this.loadEvents();
+                  }else{
+                    this.toastr.create(
+                      {
+                        message: 'Ha ocurrido un error, no se pudo cancelar la cita',
+                        duration: 3000,
+                        position: 'bottom',
+                        showCloseButton: true
+                      }
+                    ).present();
+                  }
+                }, ()=>{
+                  this.toastr.create(
+                    {
+                      message: 'Ha ocurrido un error, no se pudo cancelar la cita',
+                      duration: 3000,
+                      position: 'bottom',
+                      showCloseButton: true
+                    }
+                  ).present();
+                });
+              }
+            }
+          ]
+        }).present();
         break;
     }
   }
@@ -166,7 +242,7 @@ export class ListadoHorariosPage {
     buttons.push({
       text: 'Mi perfil',
       handler: () => {
-        this.navCtrl.push(PerfilPage);
+        this.navCtrl.push(ProfesorProfilePage);
       }
     });
     buttons.push({

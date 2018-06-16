@@ -26,4 +26,19 @@ export class ControlAccesoProvider {
   cambiarNombre(padre, nombre){
     return this.http.put("parents/" + padre, {'newName' : nombre});
   }
+
+  getProfesorData(profesor){
+    return this.http.get("teachers/" +profesor);
+  }
+
+  postCambiarPassword(profesor, oldPassword,newPassword, confirmNewPassword){
+    return this.http.put('teachers/'+profesor+'/changePassword', {
+      oldPassword: oldPassword,
+      newPassword: newPassword,
+      confirmNewPassword:confirmNewPassword
+    });
+  }
+  cambiarNombreProfesor(profesor, nombre){
+    return this.http.put("teachers/" + profesor+'/changeName', {'newName' : nombre});
+  }
 }

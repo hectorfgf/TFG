@@ -52,4 +52,14 @@ export class ControlHorariosProvider {
       status: estado
     });
   }
+  cancelarCita(schedule){
+    return this.http.put('schedules/'+schedule, {
+      status: 3
+    });
+  }
+  restablecerCita(schedule){
+    return this.http.put('schedules/'+schedule, {
+      status: 2
+    });
+  }
 }
