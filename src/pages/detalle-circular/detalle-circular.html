@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-title>Circular: {{circular.subject}}</ion-title>
+    <ion-title>{{circular.subject}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -9,8 +9,9 @@
 
 <ion-content padding>
   <div *ngIf="content">
+
     <ion-list>
-      <h1>{{content.subject}}</h1>
+      <h1>{{circular.centre}}</h1>
       <ion-item>Fecha de envio: {{content.sendingDate | date:'dd/MM/yyyy'}}</ion-item>
       <ion-item class="item-icon-left" *ngIf="content.attachmentId != null">
         <i class="icon ion-android-attach" *ngIf="content.attachmentId!=null" href="#"></i><a (click)="openInExternalBrowser(content.attachmentId)">{{content.attachmentName}}</a>

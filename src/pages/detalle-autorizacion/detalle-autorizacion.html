@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-title>Autorizacion: {{autorizacion.subject}}</ion-title>
+    <ion-title>{{autorizacion.subject}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -9,7 +9,7 @@
 
 <ion-content padding>
   <div  *ngIf="content">
-    <h4 style="color:#000000;font-weight:300;text-align:justify;">{{content.subject}}</h4>
+    <h2 style="color:#000000;font-weight:300;text-align:justify;">{{autorizacion.centre}}</h2>
     <h5  style="color:#000000;font-weight:300;">{{content.sendingDate | date:'dd/MM/yyyy'}}</h5>
     <div  style="text-align:justify;" class="show-list-numbers-and-dots">
       <p style="color:#000000;">{{content.message}}</p>

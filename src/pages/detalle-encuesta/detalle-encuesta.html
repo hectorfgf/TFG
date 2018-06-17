@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-title>Encuesta: {{encuesta.subject}}</ion-title>
+    <ion-title>{{encuesta.subject}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -9,7 +9,7 @@
 
 <ion-content padding>
   <div *ngIf="content">
-  <h3 style="color:#000000;font-weight:500;text-align:justify;">{{content.subject}}</h3>
+    <h2 style="color:#000000;font-weight:300;text-align:justify;">{{encuesta.centre}}</h2>
   <h4 style="color:#000000;font-weight:300;">Fecha de envío: {{content.sendingDate | date:'dd/MM/yyyy'}}</h4>
   <div style="text-align:justify;">
     <h5 style="color:#000000;font-weight:300;">{{content.message}}</h5>
