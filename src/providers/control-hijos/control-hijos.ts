@@ -15,4 +15,8 @@ export class ControlHijosProvider {
  deleteHijo(padre, hijo){
     return this.http.delete("parents/" + padre + "/students/" + hijo);
  }
+
+ getProfesoresHijos(id){
+    return this.http.get("parents/" + id +'/teachers');
+  }
 }

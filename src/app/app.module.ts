@@ -42,8 +42,9 @@ import {EventModalPageModule} from "../pages/event-modal/event-modal.module";
 import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
 import {BorrarHorariosPageModule} from "../pages/borrar-horarios/borrar-horarios.module";
-import {CitaDisponiblePageModule} from "../pages/cita-disponible/cita-disponible.module";
 import {ProfesorProfilePageModule} from "../pages/profesor-profile/profesor-profile.module";
+import {CitasPadrePage} from "../pages/citas-padre/citas-padre";
+import {SolicitarCitaPageModule} from "../pages/solicitar-cita/solicitar-cita.module";
 registerLocaleData(localeEs);
 
 
@@ -64,6 +65,7 @@ export function getAuthHttp(http) {
     EncuestasPage,
     AutorizacionesPage,
     CircularesPage,
+    CitasPadrePage,
     TabsPage
   ],
   imports: [
@@ -88,8 +90,8 @@ export function getAuthHttp(http) {
     NgCalendarModule,
     EventModalPageModule,
     BorrarHorariosPageModule,
-    CitaDisponiblePageModule,
     ProfesorProfilePageModule,
+    SolicitarCitaPageModule,
     HttpModule
   ],
   bootstrap: [IonicApp],
@@ -98,6 +100,7 @@ export function getAuthHttp(http) {
     EncuestasPage,
     AutorizacionesPage,
     CircularesPage,
+    CitasPadrePage,
     TabsPage
   ],
   providers: [

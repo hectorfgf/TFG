@@ -62,4 +62,14 @@ export class ControlHorariosProvider {
       status: 2
     });
   }
+
+  renovarSolicitarCita(schedule){
+    return this.http.put('schedules/'+schedule, {
+      status: 1
+    });
+  }
+
+  getCitasPadre(padre){
+    return this.http.get('parents/'+padre+'/schedules');
+  }
 }

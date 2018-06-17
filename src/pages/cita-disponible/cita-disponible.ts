@@ -21,7 +21,6 @@ export class CitaDisponiblePage {
   private alumnos: any[];
   private searchTerm: string;
   private alumnos_filtered: any[];
-  private alumno_check: any[];
   private alumno_selected:any;
   private schedule:any;
 
@@ -39,7 +38,6 @@ export class CitaDisponiblePage {
   refrescarAlumnos() {
     this.alumnos = [];
     this.alumnos_filtered = [];
-    this.alumno_check = [];
     this.control.getAlumnos(this.controlSesion.getUserId()).subscribe(
       (data: any) => {
         this.alumnos = [];
@@ -48,7 +46,6 @@ export class CitaDisponiblePage {
           for (let e of data.content.students) {
             this.alumnos.push(e);
             this.alumnos_filtered.push(e);
-            this.alumno_check[e.id] = false;
           }
         }
       }
@@ -60,10 +57,6 @@ export class CitaDisponiblePage {
 
   select(alumno){
     this.alumno_selected = alumno;
-    for (let student of this.alumnos) {
-      this.alumno_check[student.id] = false;
-    }
-    this.alumno_check[alumno] = true;
   }
 
   eliminar(){

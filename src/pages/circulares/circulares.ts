@@ -2,7 +2,6 @@ import {Component} from '@angular/core';
 import {ActionSheetController, AlertController, NavController} from 'ionic-angular';
 import {CircularProvider} from "../../providers/circulares/circulares";
 import {HttpErrorResponse} from "@angular/common/http";
-import {LoginPage} from "../login/login";
 import {DetalleCircularPage} from "../detalle-circular/detalle-circular";
 import {ControlSesionProvider} from "../../providers/control-sesion/control-sesion";
 import {CentroSeleccionPage} from "../centro-seleccion/centro-seleccion";
@@ -20,7 +19,8 @@ export class CircularesPage {
   private circulares_filtered: any[];
 
 
-  constructor(public navCtrl: NavController, public circularProvider: CircularProvider,public alertCtrl: AlertController, public actionSheetCtrl: ActionSheetController, private controlSesionProvider: ControlSesionProvider) {
+  constructor(public navCtrl: NavController, public circularProvider: CircularProvider,public alertCtrl: AlertController,
+              public actionSheetCtrl: ActionSheetController, private controlSesionProvider: ControlSesionProvider) {
     this.circulares = [];
     this.circulares_filtered = [];
     this.searchTerm = "";

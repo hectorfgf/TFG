@@ -132,6 +132,45 @@ export class ListadoHorariosPage {
         });
         break;
       case 1:
+        this.alertCtrl.create({
+          title: '¿Desea aceptar la cita?',
+          buttons: [
+            {
+              text: 'Cancelar',
+              role: 'cancel',
+              handler: data => {
+              }
+            },
+            {
+              text: 'Aceptar',
+              handler: data => {
+                this.controlHorarios.restablecerCita(event.data.id).subscribe( (response:any) => {
+                  if(response.success){
+                    this.loadEvents();
+                  }else{
+                    this.toastr.create(
+                      {
+                        message: 'Ha ocurrido un error, no se pudo aceptar la cita',
+                        duration: 3000,
+                        position: 'bottom',
+                        showCloseButton: true
+                      }
+                    ).present();
+                  }
+                }, ()=>{
+                  this.toastr.create(
+                    {
+                      message: 'Ha ocurrido un error, no se pudo aceptar la cita',
+                      duration: 3000,
+                      position: 'bottom',
+                      showCloseButton: true
+                    }
+                  ).present();
+                });
+              }
+            }
+          ]
+        }).present();
         break;
       case 2:
         this.alertCtrl.create({

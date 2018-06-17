@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-buttons start>
+      <button ion-button icon-only (click)="cancel()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Solicitar Cita</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-list>
+    <ion-item (click)="select(teacher.id,teacher.student.id)" *ngFor="let teacher of teachers">
+      <ion-icon *ngIf="teacher.id != teacher_selected || teacher.student.id != alumno_selected" name="checkbox-outline" color="primary"></ion-icon>
+      <ion-icon *ngIf="teacher.id == teacher_selected && teacher.student.id == alumno_selected" name="checkbox" color="primary"></ion-icon>
+      Profesor: {{teacher.name}} (Hijo: {{teacher.student.name}})
+    </ion-item>
+  </ion-list>
+
+  <button ion-button full icon-left (click)="searchSchedules()">
+    <ion-icon name="checkmark"></ion-icon>
+    Buscar horarios disponibles
+  </button>
+
+  <ion-navbar color="primary">
+    <p style ="color:white">
+      {{ viewTitle }}
+    </p>
+    <ion-buttons end>
+      <button ion-button [disabled]="isToday" (click)="today()">Hoy</button>
+      <button ion-button (click)="changeMode('month')">Mes</button>
+      <button ion-button (click)="changeMode('day')">Día</button>
+    </ion-buttons>
+  </ion-navbar>
+  <calendar [eventSource]="eventSource"
+            [calendarMode]="calendar.mode"
+            [locale]="calendar.locale"
+            [startingDayMonth]="calendar.startingDayMonth"
+            [currentDate]="calendar.currentDate"
+            [startHour]="calendar.startHour"
+            [endHour]="calendar.endHour"
+            [noEventsLabel] = "calendar.noEventsLabel"
+            [showEventDetail] = "calendar.showEventDetail"
+            [timeInterval]="calendar.timeInterval"
+            [dateFormatter]="calendar.dateFormatter"
+            (onCurrentDateChanged)="onCurrentDateChanged($event)"
+            (onEventSelected)="onEventSelected($event)"
+            (onTitleChanged)="onViewTitleChanged($event)"
+            (onTimeSelected)="onTimeSelected($event)"
+            step="30"
+            class="calendar">
+  </calendar>
+</ion-content>
