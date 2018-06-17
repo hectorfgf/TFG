@@ -35,11 +35,10 @@ export class RegistroPage {
     this.accesoControl.register(this.telefono, this.nombre).subscribe((response:any)=>{
       console.log(response);
       if(response.success){
-        this.controlSesion.setToken(response.content);
-        const token = this.controlSesion.getToken();
+        const token =response.content;
         const tokenDecodificado = new JwtHelper().decodeToken(token);
         this.controlSesion.setUserRegisterInformation(tokenDecodificado);
-        this.navCtrl.push('CentroSeleccionPage');
+        this.navCtrl.push('CentroSeleccionPage', {token : token});
       }else{
         this.toastr.create(
           {

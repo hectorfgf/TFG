@@ -20,7 +20,18 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
     });
-
+    if (localStorage.getItem('token')) {
+      const decodeToken = new JwtHelper().decodeToken(localStorage.getItem('token'));
+      if(decodeToken.rol === 'progenitor'){
+        this.rootPage = TabsPage;
+      }else if(decodeToken.rol==='teacher'){
+        this.rootPage = ListadoHorariosPage;
+      }else{
+        this.rootPage = LoginPage;
+      }
+    } else {
+      this.rootPage = LoginPage;
+    }
     this.control.getLoginStatus().subscribe(res => {
       if (res) {
         if (localStorage.getItem('token')) {

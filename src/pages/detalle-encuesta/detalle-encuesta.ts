@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
 import {ControlSesionProvider} from "../../providers/control-sesion/control-sesion";
 import {EncuestasProvider} from "../../providers/encuestas/encuestas";
 import moment from 'moment';
@@ -23,7 +23,7 @@ export class DetalleEncuestaPage {
   public opcionesSeleccionadas: any[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private encuestaProvider: EncuestasProvider,
-              private controlSesion: ControlSesionProvider) {
+              private controlSesion: ControlSesionProvider, private toastr: ToastController) {
     this.activa = true;
     this.opcionesSeleccionadas= [];
     this.encuesta = this.navParams.get('encuesta');
@@ -53,6 +53,14 @@ export class DetalleEncuestaPage {
       }
     }
     this.content.replied= true;
+    this.toastr.create(
+      {
+        message: 'Encuesta realizada con éxito',
+        duration: 3000,
+        position: 'bottom',
+        showCloseButton: true
+      }
+    ).present();
   }
 
   revisar(id){

@@ -304,7 +304,6 @@ export class ListadoHorariosPage {
             }
           ]
         }).present();
-
       }
     });
     buttons.push({

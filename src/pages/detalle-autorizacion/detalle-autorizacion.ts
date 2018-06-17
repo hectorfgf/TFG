@@ -65,17 +65,33 @@ export class DetalleAutorizacionPage {
                 this.autorizacionProvider.sendAutorization(reply ? 1 : 0, this.controlSesion.getUserId(), this.autorizacion.id,this.autorizacion.studentId)
                   .subscribe((response: any) => {
                     if(response.success){
-                      this.content.authorized=response.content.authorized;
+                      this.content.authorized=reply;
                       this.content.reply = reply;
                       this.content.replyId = response.content.replyId;
+                      this.toastr.create(
+                        {
+                          message: 'Modificacion de la autorización realizada correctamente',
+                          duration: 3000,
+                          position: 'bottom',
+                          showCloseButton: true
+                        }
+                      ).present();
                     }
                   });
               }else{
                 this.autorizacionProvider.actualiceAutorization(id,reply ? 1 : 0, this.controlSesion.getUserId(), this.autorizacion.id,this.autorizacion.studentId)
                   .subscribe((response: any) => {
                     if(response.success){
-                      this.content.authorized=response.content.authorized;
+                      this.content.authorized=reply;
                       this.content.reply = reply;
+                      this.toastr.create(
+                        {
+                          message: 'Modificacion de la autorización realizada correctamente',
+                          duration: 3000,
+                          position: 'bottom',
+                          showCloseButton: true
+                        }
+                      ).present();
                     }
                   });
               }

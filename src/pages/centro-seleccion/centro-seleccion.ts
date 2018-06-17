@@ -24,12 +24,15 @@ export class CentroSeleccionPage {
   disableAdd: boolean;
   centrosSelccionados: any[]=[];
   primeraVez = true;
+  token: any;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private controlCentros: ControlCentrosProvider,
               private toastr: ToastController, private controlSesion: ControlSesionProvider) {
     if(this.navParams.get('flag')){
       this.primeraVez = false;
+    }else{
+        this.token = this.navParams.get('token');
     }
     this.userId = this.controlSesion.getUserId();
     this.controlCentros.getCentrosPadre(this.userId).subscribe((response: any)=>{
@@ -60,7 +63,27 @@ export class CentroSeleccionPage {
           }
         });
       }, this);
-      this.navCtrl.setRoot(TabsPage);
+      if(this.primeraVez){
+        this.toastr.create(
+          {
+            message: 'Centros actualizados. Contacte con sus centros para que le asocie a sus hijos.',
+            duration: 3000,
+            position: 'bottom',
+            showCloseButton: true
+          }
+        ).present();
+        this.controlSesion.setToken(this.token);
+        this.navCtrl.setRoot(TabsPage);
+      }else{
+        this.toastr.create(
+          {
+            message: 'Centros actualizados',
+            duration: 3000,
+            position: 'bottom',
+            showCloseButton: true
+          }
+        ).present();
+      }
     }, ()=>{
       this.disableAdd = false;
       this.toastr.create(
