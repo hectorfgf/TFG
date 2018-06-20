@@ -45,6 +45,7 @@ import {BorrarHorariosPageModule} from "../pages/borrar-horarios/borrar-horarios
 import {ProfesorProfilePageModule} from "../pages/profesor-profile/profesor-profile.module";
 import {CitasPadrePage} from "../pages/citas-padre/citas-padre";
 import {SolicitarCitaPageModule} from "../pages/solicitar-cita/solicitar-cita.module";
+import {SolicitudesPageModule} from "../pages/solicitudes/solicitudes.module";
 registerLocaleData(localeEs);
 
 
@@ -92,6 +93,7 @@ export function getAuthHttp(http) {
     BorrarHorariosPageModule,
     ProfesorProfilePageModule,
     SolicitarCitaPageModule,
+    SolicitudesPageModule,
     HttpModule
   ],
   bootstrap: [IonicApp],

@@ -20,6 +20,8 @@ export class CitasPadrePage {
   viewTitle: string = '';
   selectedDay = new Date();
   isToday:boolean;
+  oldDate = new Date(2000, 1, 1, 0, 0, 0, 0);
+
   calendar = {
     mode: 'month',
     currentDate: new Date(),
@@ -199,6 +201,10 @@ export class CitasPadrePage {
     today.setHours(0, 0, 0, 0);
     event.setHours(0, 0, 0, 0);
     this.isToday = today.getTime() === event.getTime();
+    if(moment(this.oldDate).format('MM') === moment(event.getTime()).format('MM')){
+      this.changeMode('day');
+    }
+    this.oldDate = event;
   }
 
   solicitarTutoria(){

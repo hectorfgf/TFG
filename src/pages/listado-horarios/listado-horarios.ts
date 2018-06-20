@@ -29,6 +29,7 @@ export class ListadoHorariosPage {
   viewTitle: string = '';
   selectedDay = new Date();
   isToday:boolean;
+  oldDate = new Date(2000, 1, 1, 0, 0, 0, 0);
 
   calendar = {
     mode: 'month',
@@ -57,6 +58,16 @@ export class ListadoHorariosPage {
               public  controlHorarios: ControlHorariosProvider, public controlSesion: ControlSesionProvider,
               public actionSheetCtrl: ActionSheetController, private toastr: ToastController) {
     this.loadEvents();
+  }
+
+  showPending(){
+    let modal = this.modalCtrl.create('SolicitudesPage');
+    modal.present();
+    modal.onDidDismiss(data => {
+      if (data) {
+        this.loadEvents();
+      }
+    });
   }
 
   addSchedule(){
@@ -270,6 +281,10 @@ export class ListadoHorariosPage {
     today.setHours(0, 0, 0, 0);
     event.setHours(0, 0, 0, 0);
     this.isToday = today.getTime() === event.getTime();
+    if(moment(this.oldDate).format('MM') === moment(event.getTime()).format('MM')){
+      this.changeMode('day');
+    }
+    this.oldDate = event;
   }
 
   today() {
