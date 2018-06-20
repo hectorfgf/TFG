@@ -19,6 +19,10 @@ export class ControlHorariosProvider {
     return this.http.get('teachers/'+profesor+'/schedules');
   }
 
+  getHorariosPendientes(profesor){
+    return this.http.get('teachers/'+profesor+'/schedules?status=1');
+  }
+
   postHorarios(dateFrom,dateTo,timeFrom,timeTo,daysOfWek,segment,teacher){
     return this.http.post('schedules', {
       dateFrom: dateFrom,

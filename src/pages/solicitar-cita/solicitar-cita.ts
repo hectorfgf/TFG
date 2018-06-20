@@ -29,6 +29,7 @@ export class SolicitarCitaPage {
   viewTitle: string = '';
   selectedDay = new Date();
   isToday:boolean;
+  oldDate = new Date(2000, 1, 1, 0, 0, 0, 0);
 
   calendar = {
     mode: 'month',
@@ -79,6 +80,7 @@ export class SolicitarCitaPage {
   select(teacher,alumno){
     this.teacher_selected = teacher;
     this.alumno_selected = alumno;
+    this.searchSchedules();
   }
 
   ionViewDidLoad() {
@@ -181,6 +183,10 @@ export class SolicitarCitaPage {
     today.setHours(0, 0, 0, 0);
     event.setHours(0, 0, 0, 0);
     this.isToday = today.getTime() === event.getTime();
+    if(moment(this.oldDate).format('MM') === moment(event.getTime()).format('MM')){
+      this.changeMode('day');
+    }
+    this.oldDate = event;
   }
 
   today() {
