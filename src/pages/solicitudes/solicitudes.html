@@ -13,11 +13,10 @@
   <ion-list *ngIf="solicitudes.length > 0">
     <ion-item> Solicitudes Pendientes:</ion-item>
     <ion-item class="item-icon-right" *ngFor="let solicitud of solicitudes">
-      <p style="color: black">
-        {{solicitud.schedule.date | date:'dd/MM/yyyy'}} - {{solicitud.student.name + ' ' + solicitud.student.surname}}
-        <button ion-button (click)="aceptarCita(solicitud)">Aceptar</button>
-        <button ion-button color="danger" (click)="cancelarCita(solicitud)">Cacelar</button>
-      </p>
+       <h2>{{solicitud.student.name + ' ' + solicitud.student.surname}}</h2>
+       <p>{{solicitud.schedule.date | date:'dd/MM/yyyy'}}</p>
+        <button ion-button (click)="aceptarCita(solicitud)" item-end>Aceptar</button>
+        <button ion-button color="danger" (click)="cancelarCita(solicitud)" item-end>Cacelar</button>
     </ion-item>
   </ion-list>
   <h2 *ngIf="solicitudes.length <= 0">

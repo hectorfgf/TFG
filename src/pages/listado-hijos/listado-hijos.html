@@ -1,4 +1,3 @@
-
 <ion-header>
 
   <ion-navbar color="primary">
@@ -13,7 +12,7 @@
     <ion-item> Hijos/as:</ion-item>
     <ion-item class="item-icon-right" *ngFor="let hijo of hijos">
       {{hijo.name}} {{hijo.surname}}
-      <ion-icon (click)="deleteHijo(hijo)" name="close"></ion-icon>
+      <ion-icon (click)="deleteHijo(hijo)" name="close" item-end></ion-icon>
     </ion-item>
   </ion-list>
   <h2 *ngIf="hijos.length <= 0">

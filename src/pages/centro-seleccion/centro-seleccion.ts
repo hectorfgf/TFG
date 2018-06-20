@@ -83,6 +83,7 @@ export class CentroSeleccionPage {
             showCloseButton: true
           }
         ).present();
+        this.disableAdd = false;
       }
     }, ()=>{
       this.disableAdd = false;
