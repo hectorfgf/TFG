@@ -39,6 +39,9 @@ export class CircularesPage {
           this.circulares.push(e);
           this.circulares_filtered.push(e);
         }
+        this.circulares.sort( (a,b) => {
+          return a.read > b.read ? 1 : (a.read < b.read ?  -1 : 0);
+        });
         if (refresher != 0) {
           refresher.complete();
         }

@@ -12,7 +12,7 @@ export class CircularProvider {
     return this.http.get("parents/" + padre +'/messages?type=Circular');
   }
 
-  getCircular(circularId){
-    return this.http.get("circulars/" + circularId);
+  getCircular(circularId, padre){
+    return this.http.get("circulars/" + circularId + "/parents/" + padre);
   }
 }

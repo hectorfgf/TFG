@@ -39,6 +39,9 @@ export class AutorizacionesPage {
             this.autorizaciones.push(e);
             this.autorizaciones_filtered.push(e);
           }
+          this.autorizaciones.sort( (a,b) => {
+            return a.read > b.read ? 1 : (a.read < b.read ?  -1 : 0);
+          });
         }
         if(refresher != 0){
           refresher.complete();
