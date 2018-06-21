@@ -19,6 +19,10 @@ export class ControlAccesoProvider {
     return this.http.post('login',{'username': username, 'password': password});
   }
 
+  resetPassword(email){
+    return this.http.postReset('forgot_password/', {'email':  email});
+  }
+
   register(telefono, nombre){
     return this.http.post('register', {'name' : nombre, 'telephone' : telefono});
   }

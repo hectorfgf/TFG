@@ -4,6 +4,7 @@ import {ControlSesionProvider} from "../../providers/control-sesion/control-sesi
 import {ControlAccesoProvider} from "../../providers/control-acceso/control-acceso";
 import {JwtHelper} from "angular2-jwt";
 import {ListadoHorariosPage} from "../listado-horarios/listado-horarios";
+import {ResetPasswordPage} from "../reset-password/reset-password";
 
 /**
  * Generated class for the LoginProfesorPage page.
@@ -68,6 +69,9 @@ export class LoginProfesorPage {
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginProfesorPage');
+  }
+  goResetPassword(){
+    this.navCtrl.push('ResetPasswordPage');
   }
 
 }

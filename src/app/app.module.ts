@@ -46,6 +46,7 @@ import {ProfesorProfilePageModule} from "../pages/profesor-profile/profesor-prof
 import {CitasPadrePage} from "../pages/citas-padre/citas-padre";
 import {SolicitarCitaPageModule} from "../pages/solicitar-cita/solicitar-cita.module";
 import {SolicitudesPageModule} from "../pages/solicitudes/solicitudes.module";
+import {ResetPasswordPageModule} from "../pages/reset-password/reset-password.module";
 registerLocaleData(localeEs);
 
 
@@ -94,6 +95,7 @@ export function getAuthHttp(http) {
     ProfesorProfilePageModule,
     SolicitarCitaPageModule,
     SolicitudesPageModule,
+    ResetPasswordPageModule,
     HttpModule
   ],
   bootstrap: [IonicApp],
