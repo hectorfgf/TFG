@@ -13,7 +13,7 @@
       <h1>{{circular.centre}}</h1>
       <ion-item>Fecha de envio: {{content.sendingDate | date:'dd/MM/yyyy'}}</ion-item>
       <ion-item class="item-icon-left" *ngIf="content.attachmentId != null">
-        <i class="icon ion-android-attach" *ngIf="content.attachmentId!=null" href="#"></i><a (click)="openInExternalBrowser(content.attachmentId)">{{content.attachmentName}}</a>
+        <i class="icon ion-android-attach" *ngIf="content.attachmentId!=null" href="#"></i><a (click)="downloadAttachment(content.attachmentName)">{{content.attachmentName}}</a>
       </ion-item>
     </ion-list>
     <div style="text-align:justify;" padding>

@@ -16,7 +16,7 @@
     </div>
     <ion-list>
       <ion-item class="item-icon-left" *ngIf="content.attachmentId != null">
-        <i class="icon ion-android-attach" *ngIf="content.attachmentId!=null" href="#"></i><a (click)="openInExternalBrowser(content.attachmentId)">{{content.attachmentName}}</a>
+        <i class="icon ion-android-attach" *ngIf="content.attachmentId!=null" href="#"></i><a (click)="downloadAttachment(content.attachmentName)">{{content.attachmentName}}</a>
       </ion-item>
       <ion-item>Hijo/a: {{content.studentName}}</ion-item>
       <ion-item> Fecha límite:<p style="color : red" [hidden]="activa == true">EXCEDIDA</p> {{content.limitDate | date:'dd/MM/yyyy'}}</ion-item>

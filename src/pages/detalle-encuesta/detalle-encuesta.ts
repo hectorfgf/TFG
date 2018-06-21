@@ -74,5 +74,8 @@ export class DetalleEncuestaPage {
       }
     }
   }
+  downloadAttachment(attachment){
+    this.encuestaProvider.donwloadPoll(attachment);
+  }
 
 }

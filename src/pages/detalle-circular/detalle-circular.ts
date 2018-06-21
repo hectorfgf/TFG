@@ -39,5 +39,8 @@ export class DetalleCircularPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad DetalleCircularPage');
   }
+  downloadAttachment(attachment){
+    this.circularProvider.donwloadCircular(attachment);
+  }
 
 }

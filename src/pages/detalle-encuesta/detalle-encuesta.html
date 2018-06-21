@@ -16,7 +16,7 @@
   </div>
     <ion-list>
       <ion-item class="item-icon-left" *ngIf="content.attachmentId != null">
-        <i class="icon ion-android-attach" *ngIf="content.attachmentId!=null" href="#"></i><a (click)="openInExternalBrowser(content.attachmentId)">{{content.attachmentName}}</a>
+        <i class="icon ion-android-attach" *ngIf="content.attachmentId!=null" href="#"></i><a (click)="downloadAttachment(content.attachmentName)">{{content.attachmentName}}</a>
       </ion-item>
     <ion-item *ngIf="activa == true && content.replied !== true">
       {{content.multiple ? "Escoja una o varias respuestas:" : "Escoja una respuesta:"}}

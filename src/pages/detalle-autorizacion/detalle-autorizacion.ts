@@ -114,4 +114,7 @@ export class DetalleAutorizacionPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad DetalleAutorizacionPage');
   }
+  downloadAttachment(attachment){
+    this.autorizacionProvider.donwloadAuthorization(attachment);
+  }
 }

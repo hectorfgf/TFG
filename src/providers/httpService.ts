@@ -53,6 +53,10 @@ export class HttpUsingFormDataService {
     return urlSearchParams;
   }
 
+  postReset(endpoint: string, json) {
+    return this.http.post(apiURL + endpoint, json, {headers: new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'})});
+  }
+
   encode(cadena) {
     cadena = cadena.replace(/&/g, '%26');
     cadena = cadena.replace(/\+/g, '%2B');
