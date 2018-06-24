@@ -16,8 +16,8 @@
         <i class="icon ion-android-attach" *ngIf="content.attachmentId!=null" href="#"></i><a (click)="downloadAttachment(content.attachmentName)">{{content.attachmentName}}</a>
       </ion-item>
     </ion-list>
-    <div style="text-align:justify;" padding>
-      <p  padding style="color:#000000; font-size:16px;">{{content.message}}</p>
+    <div style="text-align:justify;">
+      <p  padding style="color:#000000; font-size:16px; margin:0">{{content.message}}</p>
     </div>
   </div>
 </ion-content>

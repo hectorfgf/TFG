@@ -1,7 +1,12 @@
 <button ion-item>
-  <h2>{{encuesta.subject}}
-    <ion-icon *ngIf="encuesta.attachment" name="attach" ></ion-icon>
+  <h2>
+    {{encuesta.subject}}
+  </h2>
+  <p>
     <ion-badge *ngIf="encuesta.read === 1" item-end>Contestada</ion-badge>
     <ion-badge *ngIf="encuesta.read !== 1" color="secondary" item-end>No Contestada</ion-badge>
-  </h2>
+  </p>
+  <ion-thumbnail item-end>
+    <ion-icon *ngIf="encuesta.attachment" name="attach" class="attach"></ion-icon>
+  </ion-thumbnail>
 </button>

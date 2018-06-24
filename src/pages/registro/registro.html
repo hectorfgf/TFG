@@ -1,6 +1,6 @@
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>Registro de padre</ion-title>
   </ion-navbar>
 
@@ -15,12 +15,12 @@
   </ion-item>
 
   <ion-item>
-    <ion-input [(ngModel)]="telefono" type="text" placeholder="Telefono"></ion-input>
+    <ion-input [(ngModel)]="telefono" type="text" placeholder="Teléfono"></ion-input>
   </ion-item>
 
   <div padding>
     <button ion-button block (click)="doRegister()" [disabled]="disableRegister">
-      <span *ngIf="!disableRegister">Registrate</span>
+      <span *ngIf="!disableRegister">Regístrate</span>
       <ion-spinner *ngIf="disableRegister"></ion-spinner>
     </button>
   </div>

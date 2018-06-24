@@ -1,7 +1,13 @@
 <button ion-item>
-  <h2>{{autorizacion.subject}} ({{autorizacion.studentName}})
-    <ion-icon *ngIf="autorizacion.attachment" name="attach" ></ion-icon>
+  <h2>
+    {{autorizacion.subject}}
+  </h2>
+  <p>
+    ({{autorizacion.studentName}})
     <ion-badge *ngIf="autorizacion.read === 1" item-end>Contestada</ion-badge>
     <ion-badge *ngIf="autorizacion.read !== 1" color="secondary" item-end>No Contestada</ion-badge>
-  </h2>
+  </p>
+  <ion-thumbnail item-end>
+    <ion-icon *ngIf="autorizacion.attachment" name="attach" class="attach"></ion-icon>
+  </ion-thumbnail>
 </button>

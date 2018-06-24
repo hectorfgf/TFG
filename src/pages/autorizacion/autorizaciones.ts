@@ -85,10 +85,10 @@ export class AutorizacionesPage {
       }
     });
     buttons.push({
-      text: 'Cerrar sesion',
+      text: 'Cerrar sesión',
       handler: () => {
         this.alertCtrl.create({
-          title: '¿Desea cerrar session?',
+          title: '¿Desea cerrar sessión?',
           buttons: [
             {
               text: 'Cancelar',

@@ -1,7 +1,12 @@
 <button ion-item>
-  <h2>{{circular.subject}}
-    <ion-icon *ngIf="circular.attachment" name="attach" ></ion-icon>
+  <h2>
+    {{circular.subject}}
+  </h2>
+  <p>
     <ion-badge *ngIf="circular.read === 1" item-end>Leída</ion-badge>
     <ion-badge *ngIf="circular.read !== 1" color="secondary" item-end>No Leída</ion-badge>
-  </h2>
+  </p>
+  <ion-thumbnail item-end>
+    <ion-icon *ngIf="circular.attachment" name="attach" class="attach"></ion-icon>
+  </ion-thumbnail>
 </button>

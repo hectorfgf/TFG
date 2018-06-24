@@ -11,12 +11,12 @@
   <h1 ion-text text-center color="primary" style="font-weight:100">Hermerest</h1>
 
   <ion-item>
-    <ion-input [(ngModel)]="telefono" type="text" placeholder="Telefono"></ion-input>
+    <ion-input [(ngModel)]="telefono" type="text" placeholder="Teléfono"></ion-input>
   </ion-item>
 
   <div padding>
     <button ion-button block (click)="doLogin()" [disabled]="disableLogin">
-      <span *ngIf="!disableLogin">Iniciar Sesion</span>
+      <span *ngIf="!disableLogin">Iniciar Sesión</span>
       <ion-spinner *ngIf="disableLogin"></ion-spinner>
     </button>
     <p text-center>
@@ -24,7 +24,7 @@
         <span >Quiero Registrarme</span>
       </button>
     </p>
-    <a (click)="goLoginProfesor()"><p style="color: deepskyblue">¿Eres profesor? Inicia sesion aquí</p></a>
+    <a (click)="goLoginProfesor()"><p style="color: deepskyblue">¿Eres profesor? Inicia sesión aquí</p></a>
   </div>
 
 </ion-content>
