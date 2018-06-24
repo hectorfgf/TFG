@@ -6,6 +6,7 @@
     <ion-badge *ngIf="circular.read === 1" item-end>Leída</ion-badge>
     <ion-badge *ngIf="circular.read !== 1" color="secondary" item-end>No Leída</ion-badge>
   </p>
+  <p>Enviada {{circular.from_now}}</p>
   <ion-thumbnail item-end>
     <ion-icon *ngIf="circular.attachment" name="attach" class="attach"></ion-icon>
   </ion-thumbnail>

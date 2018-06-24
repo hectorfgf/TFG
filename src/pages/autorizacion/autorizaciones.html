@@ -16,5 +16,5 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
   <ion-searchbar [(ngModel)]="searchTerm" ></ion-searchbar>
-  <autorizacion *ngFor="let autorizacion of autorizaciones | search: searchTerm" [autorizacion]="autorizacion" (click)="mostrarDetalle(autorizacion)"></autorizacion>
+  <autorizacion *ngFor="let autorizacion of autorizaciones | search: searchTerm" [autorizacion]="autorizacion"  (click)="mostrarDetalle(autorizacion)"></autorizacion>
 </ion-content>

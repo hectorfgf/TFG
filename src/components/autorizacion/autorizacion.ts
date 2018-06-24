@@ -6,13 +6,13 @@ import {DomSanitizer} from "@angular/platform-browser";
   selector: 'autorizacion',
   templateUrl: 'autorizacion.html'
 })
+
 export class AutorizacionComponent {
 
   @Input()
   public autorizacion: any;
 
   constructor(public navCtrl: NavController, public domSanitizer: DomSanitizer) {
-
   }
 
 }

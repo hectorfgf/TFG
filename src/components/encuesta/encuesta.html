@@ -6,6 +6,9 @@
     <ion-badge *ngIf="encuesta.read === 1" item-end>Contestada</ion-badge>
     <ion-badge *ngIf="encuesta.read !== 1" color="secondary" item-end>No Contestada</ion-badge>
   </p>
+  <p>Enviada {{encuesta.from_now}}</p>
+  <p *ngIf="encuesta.isExpired" style="color: red">Fecha Límite Excedida</p>
+  <p *ngIf="!encuesta.isExpired"> Expira {{encuesta.expire}}</p>
   <ion-thumbnail item-end>
     <ion-icon *ngIf="encuesta.attachment" name="attach" class="attach"></ion-icon>
   </ion-thumbnail>

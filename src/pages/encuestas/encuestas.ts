@@ -8,6 +8,9 @@ import {CentroSeleccionPage} from "../centro-seleccion/centro-seleccion";
 import {DetalleEncuestaPage} from "../detalle-encuesta/detalle-encuesta";
 import {PerfilPage} from "../perfil/perfil";
 import {ListadoHijosPage} from "../listado-hijos/listado-hijos";
+import * as moment from 'moment';
+import * as locales from 'moment/min/locales';
+moment.locale('es');
 
 @Component({
   selector: 'encuestas',
@@ -35,6 +38,13 @@ export class EncuestasPage {
         this.encuestas_filtered = [];
         if(data.success){
           for(let e of data.content) {
+            e.from_now = moment(e.sendingDate).fromNow();
+            e.expire = moment(e.limitDate).fromNow();
+            if(moment(e.limitDate).diff(moment())< 0){
+              e.isExpired= true;
+            }else{
+              e.isExpired= false;
+            }
             this.encuestas.push(e);
             this.encuestas_filtered.push(e);
           }

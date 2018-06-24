@@ -6,7 +6,11 @@
     ({{autorizacion.studentName}})
     <ion-badge *ngIf="autorizacion.read === 1" item-end>Contestada</ion-badge>
     <ion-badge *ngIf="autorizacion.read !== 1" color="secondary" item-end>No Contestada</ion-badge>
+
   </p>
+  <p>Enviada {{autorizacion.from_now}}</p>
+  <p *ngIf="autorizacion.isExpired" style="color: red">Fecha Límite Excedida</p>
+  <p *ngIf="!autorizacion.isExpired"> Expira {{autorizacion.expire}}</p>
   <ion-thumbnail item-end>
     <ion-icon *ngIf="autorizacion.attachment" name="attach" class="attach"></ion-icon>
   </ion-thumbnail>

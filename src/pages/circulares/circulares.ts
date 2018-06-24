@@ -7,6 +7,9 @@ import {ControlSesionProvider} from "../../providers/control-sesion/control-sesi
 import {CentroSeleccionPage} from "../centro-seleccion/centro-seleccion";
 import {ListadoHijosPage} from "../listado-hijos/listado-hijos";
 import {PerfilPage} from "../perfil/perfil";
+import * as moment from 'moment';
+import * as locales from 'moment/min/locales';
+moment.locale('es');
 
 @Component({
   selector: 'circulares',
@@ -36,6 +39,7 @@ export class CircularesPage {
         this.circulares = [];
         this.circulares_filtered = [];
         for (let e of data.content) {
+          e.from_now = moment(e.sendingDate).fromNow();
           this.circulares.push(e);
           this.circulares_filtered.push(e);
         }
