@@ -12,10 +12,10 @@
     <ion-item> Hijos/as:</ion-item>
     <ion-item class="item-icon-right" *ngFor="let hijo of hijos">
       {{hijo.name}} {{hijo.surname}}
-      <ion-icon (click)="deleteHijo(hijo)" name="close" item-end></ion-icon>
+      <ion-icon (click)="deleteHijo(hijo)" name="close-circle" style="color: red" item-end></ion-icon>
     </ion-item>
   </ion-list>
   <h2 *ngIf="hijos.length <= 0">
-    Aún no tienes hijos asociados. Contacte con su centro
+    Aún no tienes hijos asociados. Contacte con su centro.
   </h2>
 </ion-content>

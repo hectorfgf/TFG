@@ -34,8 +34,8 @@ export class ListadoHijosPage {
 
   deleteHijo(hijo){
     this.alertCtrl.create({
-      title: '¿Esta seguro que desea deshasociar el hijo?',
-      subTitle: 'Esta accion sera irreversible',
+      title: '¿Esta seguro que desea desasociar el hijo?',
+      subTitle: 'Esta accion será irreversible',
       buttons: [
         {
           text: 'Cancelar',
@@ -53,7 +53,7 @@ export class ListadoHijosPage {
               }
               this.toastr.create(
                 {
-                  message: 'Hijo eliminado con exito',
+                  message: 'Hijo eliminado con éxito',
                   duration: 3000,
                   position: 'bottom',
                   showCloseButton: true
@@ -62,7 +62,7 @@ export class ListadoHijosPage {
             }, () =>{
               this.toastr.create(
                 {
-                  message: 'No se pudo deshasociar el hijo',
+                  message: 'No se pudo desasociar el hijo',
                   duration: 3000,
                   position: 'bottom',
                   showCloseButton: true
