@@ -4,6 +4,7 @@ import {ControlAccesoProvider} from "../../providers/control-acceso/control-acce
 import {ControlSesionProvider} from "../../providers/control-sesion/control-sesion";
 import {CentroSeleccionPage} from "../centro-seleccion/centro-seleccion";
 import {JwtHelper} from "angular2-jwt";
+import {FormBuilder, FormControl, Validators} from "@angular/forms";
 
 /**
  * Generated class for the RegistroPage page.
@@ -22,12 +23,17 @@ export class RegistroPage {
   public telefono: string;
   public nombre: string;
   private disableRegister: boolean;
+  form: any;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private toastr: ToastController,
-              private accesoControl: ControlAccesoProvider,private controlSesion: ControlSesionProvider) {
+              private accesoControl: ControlAccesoProvider,private controlSesion: ControlSesionProvider, private formBuilder: FormBuilder) {
     this.telefono = "";
     this.nombre = "";
+    this.form = this.formBuilder.group({
+      terms: [false,  matchTrue()]
+    });
+
   }
 
   doRegister() {
@@ -51,6 +57,22 @@ export class RegistroPage {
         this.disableRegister = false;
       }
     });
+  }
+
+}
+
+
+export function matchTrue () {
+
+
+  return function matchOtherValidate (control: FormControl) {
+
+    if (!control.value) {
+      return {
+        matchTrue: true
+      };
+    }
+    return null;
   }
 
 }
