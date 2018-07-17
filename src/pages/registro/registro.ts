@@ -56,6 +56,16 @@ export class RegistroPage {
         ).present();
         this.disableRegister = false;
       }
+    }, ()=>{
+      this.toastr.create(
+        {
+          message: 'Ha ocurrido un error, no se pudo registrar',
+          duration: 3000,
+          position: 'bottom',
+          showCloseButton: true
+        }
+      ).present();
+      this.disableRegister = false;
     });
   }
 
