@@ -25,7 +25,7 @@
         <ion-checkbox style="margin-top: 20%" [formControl]="form.controls['terms']"></ion-checkbox>
       </ion-col>
       <ion-col col-10>
-        <p>* Acepta los terminos y condiciones</p>
+        <p>* Acepta los términos y condiciones</p>
         <p *ngIf="form.controls['terms'].errors && form.controls['terms'].errors.matchTrue && (form.controls['terms'].dirty || form.controls['terms'].touched )" class="danger" padding>
           Campo obligatorio
         </p>
